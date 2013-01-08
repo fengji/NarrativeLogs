@@ -99,6 +99,7 @@
         title = theShift;
     }
     cell.textLabel.text = title;
+    cell.detailTextLabel.text = @"Active";
     return cell;
 }
 
