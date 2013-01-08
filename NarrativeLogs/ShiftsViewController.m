@@ -1,58 +1,49 @@
 //
-//  NarrativeLogsViewController.m
+//  ShiftsViewController.m
 //  NarrativeLogs
 //
 //  Created by Feng Ji on 1/8/13.
 //  Copyright (c) 2013 Feng Ji. All rights reserved.
 //
 
-#import "NarrativeLogsViewController.h"
 #import "ShiftsViewController.h"
 
-@interface NarrativeLogsViewController ()
+@interface ShiftsViewController ()
 
 @end
 
-@implementation NarrativeLogsViewController
-@synthesize logs = _logs;
+@implementation ShiftsViewController
+@synthesize shifts = _shifts;
 
-- (void) setLogs:(NSArray *)logs
+- (void) setShifts:(NSArray *)shifts
 {
-    if(_logs != logs){
-        _logs = logs;
+    if(_shifts != shifts){
+        _shifts = shifts;
         [self.tableView reloadData];
     }
 }
 
-- (void) loadLogs:(id)sender
+- (void) loadShifts:(id)sender
 {
     // use web service to load the data
-    _logs = [NSArray arrayWithObjects:@"Common", @"Mechanical", @"Unit 1", nil];
+    if([sender isKindOfClass:[NSString class]]){
+            NSString * shift1 = [NSString stringWithFormat:@"Night-%@",(NSString*)sender];
+            NSString * shift2 = [NSString stringWithFormat:@"Morning-%@",(NSString*)sender];
+            NSString * shift3 = [NSString stringWithFormat:@"Afternoon-%@",(NSString*)sender];
+            self.shifts = [NSArray arrayWithObjects:shift1, shift2, shift3,nil];
+    }else{
+        self.shifts = [NSArray arrayWithObjects:@"Night", @"Morning", @"Afternoon",nil];
+    }
     
 }
 
-- (NSArray *) logs
+- (NSArray *) shifts
 {
-    if(!_logs){
-        [self loadLogs:nil];
+    if(!_shifts){
+        [self loadShifts: nil];
     }
-    return _logs;
-
-}
-
-- (ShiftsViewController* ) shiftsViewController
-{
-    ShiftsViewController* shvc = [self.splitViewController.viewControllers lastObject];
-    if(![shvc isKindOfClass:[ShiftsViewController class]]){
-        shvc = nil;
-    }
-    return shvc;
-}
-
-- (void) handleSelectLog:(NSString *)log
-{
-    ShiftsViewController* shvc = [self shiftsViewController];
-    [shvc loadShifts:log];
+    return _shifts;
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -90,21 +81,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.logs count];
+    return [self.shifts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Narrative Logs Cell";
+    static NSString *CellIdentifier = @"Shifts Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    id nLog = [self.logs objectAtIndex:indexPath.row];
+    id theShift = [self.shifts objectAtIndex:indexPath.row];
     NSString *title = nil;
-    if([nLog isKindOfClass:[NSString class]]){
-        title = nLog;
+    if([theShift isKindOfClass:[NSString class]]){
+        title = theShift;
     }
     cell.textLabel.text = title;
     return cell;
@@ -153,9 +145,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * nLog = [self.logs objectAtIndex:indexPath.row];
-    [self handleSelectLog:nLog];
-    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

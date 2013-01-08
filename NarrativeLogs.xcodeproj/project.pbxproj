@@ -17,12 +17,13 @@
 		32AB99C9169C97F300796870 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AB99C8169C97F300796870 /* Default@2x.png */; };
 		32AB99CB169C97F300796870 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AB99CA169C97F300796870 /* Default-568h@2x.png */; };
 		32AB99CE169C97F300796870 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32AB99CC169C97F300796870 /* MainStoryboard.storyboard */; };
-		32AB99D1169C97F300796870 /* NarrativeLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99D0169C97F300796870 /* NarrativeLogsViewController.m */; };
 		32AB99D9169C97F300796870 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99D8169C97F300796870 /* SenTestingKit.framework */; };
 		32AB99DA169C97F300796870 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B4169C97F300796870 /* UIKit.framework */; };
 		32AB99DB169C97F300796870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B6169C97F300796870 /* Foundation.framework */; };
 		32AB99E3169C97F300796870 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32AB99E1169C97F300796870 /* InfoPlist.strings */; };
 		32AB99E6169C97F300796870 /* NarrativeLogsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99E5169C97F300796870 /* NarrativeLogsTests.m */; };
+		32AB99F1169C98D300796870 /* NarrativeLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */; };
+		32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F3169C994800796870 /* ShiftsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,14 +51,16 @@
 		32AB99C8169C97F300796870 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		32AB99CA169C97F300796870 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32AB99CD169C97F300796870 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		32AB99CF169C97F300796870 /* NarrativeLogsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NarrativeLogsViewController.h; sourceTree = "<group>"; };
-		32AB99D0169C97F300796870 /* NarrativeLogsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NarrativeLogsViewController.m; sourceTree = "<group>"; };
 		32AB99D7169C97F300796870 /* NarrativeLogsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarrativeLogsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AB99D8169C97F300796870 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		32AB99E0169C97F300796870 /* NarrativeLogsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NarrativeLogsTests-Info.plist"; sourceTree = "<group>"; };
 		32AB99E2169C97F300796870 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32AB99E4169C97F300796870 /* NarrativeLogsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NarrativeLogsTests.h; sourceTree = "<group>"; };
 		32AB99E5169C97F300796870 /* NarrativeLogsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NarrativeLogsTests.m; sourceTree = "<group>"; };
+		32AB99EF169C98D300796870 /* NarrativeLogsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NarrativeLogsViewController.h; sourceTree = "<group>"; };
+		32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NarrativeLogsViewController.m; sourceTree = "<group>"; };
+		32AB99F2169C994800796870 /* ShiftsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftsViewController.h; sourceTree = "<group>"; };
+		32AB99F3169C994800796870 /* ShiftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,11 +120,13 @@
 		32AB99BA169C97F300796870 /* NarrativeLogs */ = {
 			isa = PBXGroup;
 			children = (
+				32AB99EF169C98D300796870 /* NarrativeLogsViewController.h */,
+				32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */,
 				32AB99C3169C97F300796870 /* NarrativeLogsAppDelegate.h */,
 				32AB99C4169C97F300796870 /* NarrativeLogsAppDelegate.m */,
 				32AB99CC169C97F300796870 /* MainStoryboard.storyboard */,
-				32AB99CF169C97F300796870 /* NarrativeLogsViewController.h */,
-				32AB99D0169C97F300796870 /* NarrativeLogsViewController.m */,
+				32AB99F2169C994800796870 /* ShiftsViewController.h */,
+				32AB99F3169C994800796870 /* ShiftsViewController.m */,
 				32AB99BB169C97F300796870 /* Supporting Files */,
 			);
 			path = NarrativeLogs;
@@ -273,7 +278,8 @@
 			files = (
 				32AB99C1169C97F300796870 /* main.m in Sources */,
 				32AB99C5169C97F300796870 /* NarrativeLogsAppDelegate.m in Sources */,
-				32AB99D1169C97F300796870 /* NarrativeLogsViewController.m in Sources */,
+				32AB99F1169C98D300796870 /* NarrativeLogsViewController.m in Sources */,
+				32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
