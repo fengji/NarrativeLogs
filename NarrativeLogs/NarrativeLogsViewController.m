@@ -55,6 +55,32 @@
     [shvc loadShifts:log];
 }
 
+// pull down to refresh
+// Details see: 
+// http://www.intertech.com/Blog/Post/iOS-6-Pull-to-Refresh-%28UIRefreshControl%29.aspx
+//
+-(void)refreshView:(UIRefreshControl *)refresh {
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    
+    // custom refresh logic would be placed here...    
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                                    
+                            [formatter stringFromDate:[NSDate date]]];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    
+    [refresh endRefreshing];
+    
+}
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -67,6 +93,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // pull down to refresh
+    // Details see:
+    // http://www.intertech.com/Blog/Post/iOS-6-Pull-to-Refresh-%28UIRefreshControl%29.aspx
+    //
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    [refresh addTarget:self
+             action:@selector(refreshView:)
+             forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

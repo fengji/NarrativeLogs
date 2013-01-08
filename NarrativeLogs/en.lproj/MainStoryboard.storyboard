@@ -68,6 +68,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="dAR-50-hM2"/>
+                                <barButtonItem title="Shifts" style="plain" id="H24-I3-YZl"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="TkO-RB-GCJ"/>
                                 <barButtonItem title="Logout" width="66" id="Lxs-Mb-SXb"/>
                             </items>
                         </toolbar>
@@ -119,14 +122,6 @@
             <point key="canvasLocation" x="-338" y="-226"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NarrativeLogsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NarrativeLogsViewController.h"/>
-        </class>
-        <class className="ShiftsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
