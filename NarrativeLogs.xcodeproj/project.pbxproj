@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320DC2E6169DD43300B0793C /* NarrativeLogsDataAccessService.m in Sources */ = {isa = PBXBuildFile; fileRef = 320DC2E5169DD43300B0793C /* NarrativeLogsDataAccessService.m */; };
 		32AB99B5169C97F300796870 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B4169C97F300796870 /* UIKit.framework */; };
 		32AB99B7169C97F300796870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B6169C97F300796870 /* Foundation.framework */; };
 		32AB99B9169C97F300796870 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B8169C97F300796870 /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320DC2E4169DD43300B0793C /* NarrativeLogsDataAccessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NarrativeLogsDataAccessService.h; sourceTree = "<group>"; };
+		320DC2E5169DD43300B0793C /* NarrativeLogsDataAccessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NarrativeLogsDataAccessService.m; sourceTree = "<group>"; };
 		32AB99B0169C97F300796870 /* NarrativeLogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarrativeLogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AB99B4169C97F300796870 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		32AB99B6169C97F300796870 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320DC2E2169DD3E000B0793C /* DataAccess */ = {
+			isa = PBXGroup;
+			children = (
+				320DC2E4169DD43300B0793C /* NarrativeLogsDataAccessService.h */,
+				320DC2E5169DD43300B0793C /* NarrativeLogsDataAccessService.m */,
+			);
+			name = DataAccess;
+			sourceTree = "<group>";
+		};
 		32AB99A5169C97F300796870 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +132,7 @@
 		32AB99BA169C97F300796870 /* NarrativeLogs */ = {
 			isa = PBXGroup;
 			children = (
+				320DC2E2169DD3E000B0793C /* DataAccess */,
 				32AB99EF169C98D300796870 /* NarrativeLogsViewController.h */,
 				32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */,
 				32AB99C3169C97F300796870 /* NarrativeLogsAppDelegate.h */,
@@ -280,6 +293,7 @@
 				32AB99C5169C97F300796870 /* NarrativeLogsAppDelegate.m in Sources */,
 				32AB99F1169C98D300796870 /* NarrativeLogsViewController.m in Sources */,
 				32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */,
+				320DC2E6169DD43300B0793C /* NarrativeLogsDataAccessService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +470,7 @@
 				32AB99EB169C97F300796870 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32AB99EC169C97F300796870 /* Build configuration list for PBXNativeTarget "NarrativeLogsTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +479,7 @@
 				32AB99EE169C97F300796870 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

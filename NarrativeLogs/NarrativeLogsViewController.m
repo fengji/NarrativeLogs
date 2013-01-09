@@ -8,6 +8,7 @@
 
 #import "NarrativeLogsViewController.h"
 #import "ShiftsViewController.h"
+#import "NarrativeLogsDataAccessService.h"
 
 @interface NarrativeLogsViewController ()
 
@@ -27,7 +28,7 @@
 - (void) loadLogs:(id)sender
 {
     // use web service to load the data
-    _logs = [NSArray arrayWithObjects:@"Common", @"Mechanical", @"Unit 1", nil];
+    _logs = [NarrativeLogsDataAccessService narrativeLogs];
     
 }
 

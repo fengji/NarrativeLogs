@@ -7,6 +7,7 @@
 //
 
 #import "ShiftsViewController.h"
+#import "NarrativeLogsDataAccessService.h"
 
 @interface ShiftsViewController ()
 
@@ -25,16 +26,7 @@
 
 - (void) loadShifts:(id)sender
 {
-    // use web service to load the data
-    if([sender isKindOfClass:[NSString class]]){
-            NSString * shift1 = [NSString stringWithFormat:@"Night-%@",(NSString*)sender];
-            NSString * shift2 = [NSString stringWithFormat:@"Morning-%@",(NSString*)sender];
-            NSString * shift3 = [NSString stringWithFormat:@"Afternoon-%@",(NSString*)sender];
-            self.shifts = [NSArray arrayWithObjects:shift1, shift2, shift3,nil];
-    }else{
-        self.shifts = [NSArray arrayWithObjects:@"Night", @"Morning", @"Afternoon",nil];
-    }
-    
+    self.shifts = [NarrativeLogsDataAccessService shifts:sender];
 }
 
 - (NSArray *) shifts
