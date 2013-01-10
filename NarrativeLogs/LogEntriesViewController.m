@@ -1,49 +1,41 @@
 //
-//  ShiftsViewController.m
+//  LogEntriesViewController.m
 //  NarrativeLogs
 //
-//  Created by Feng Ji on 1/8/13.
+//  Created by Feng Ji on 1/9/13.
 //  Copyright (c) 2013 Feng Ji. All rights reserved.
 //
 
-#import "ShiftsViewController.h"
+#import "LogEntriesViewController.h"
 #import "NarrativeLogsDataAccessService.h"
-#import "NarrativeLogsViewController.h"
 
-@interface ShiftsViewController ()
+@interface LogEntriesViewController ()
 
 @end
 
-@implementation ShiftsViewController
-@synthesize shifts = _shifts;
+@implementation LogEntriesViewController
+@synthesize logEntries = _logEntries;
 
-- (void) setShifts:(NSArray *)shifts
+- (void) setLogEntries:(NSArray *)logEntries
 {
-    if(_shifts != shifts){
-        _shifts = shifts;
+    if(_logEntries != logEntries){
+        _logEntries = logEntries;
         [self.tableView reloadData];
     }
 }
 
-- (void) loadShifts:(id)sender
+- (void) loadLogEntries:(id)sender
 {
-    self.shifts = [NarrativeLogsDataAccessService shifts:sender];
+    self.logEntries = [NarrativeLogsDataAccessService logEntries:sender];
 }
 
-- (NSArray *) shifts
+- (NSArray *) logEntries
 {
-    if(!_shifts){
-        [self loadShifts: nil];
+    if(!_logEntries){
+        [self loadLogEntries: nil];
     }
-    return _shifts;
+    return _logEntries;
     
-}
-
-- (NarrativeLogsViewController *)narrativeLogsViewController
-{
-    // getting the master view controller
-    id nlvc =[[self.splitViewController.viewControllers objectAtIndex:0] topViewController];
-    return nlvc;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -81,25 +73,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.shifts count];
+    return [self.logEntries count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Shifts Cell";
+    static NSString *CellIdentifier = @"LogEntries";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    id theShift = [self.shifts objectAtIndex:indexPath.row];
-    NSString *title = nil;
-    if([theShift isKindOfClass:[NSString class]]){
-        title = theShift;
+    id theLogEntry = [self.logEntries objectAtIndex:indexPath.row];
+    NSString *title = nil, *subtitle = nil;
+    if([theLogEntry isKindOfClass:[NSDictionary class]]){
+        NSDictionary * entry = (NSDictionary *)theLogEntry;
+        title = [entry objectForKey:@"logEntryName"];
+        subtitle = [entry objectForKey:@"logEntryDesc"];
     }
     cell.textLabel.text = title;
-    cell.detailTextLabel.text = @"Active";
+    cell.detailTextLabel.text=subtitle;
     return cell;
 }
 
@@ -153,8 +147,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    
-    [[self narrativeLogsViewController] performSegueWithIdentifier:@"ShiftLogView" sender:[self narrativeLogsViewController]];
 }
 
 @end

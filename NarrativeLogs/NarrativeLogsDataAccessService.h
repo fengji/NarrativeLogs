@@ -11,4 +11,6 @@
 @interface NarrativeLogsDataAccessService : NSObject
 + (NSArray*) narrativeLogs;
 + (NSArray*) shifts:(id) logName;
++ (NSArray*) logEntries:(id) shift;
++ (NSArray*) shiftLogItems:(id)shift :(id)logType;
 @end

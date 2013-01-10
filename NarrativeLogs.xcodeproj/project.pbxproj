@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		320DC2E6169DD43300B0793C /* NarrativeLogsDataAccessService.m in Sources */ = {isa = PBXBuildFile; fileRef = 320DC2E5169DD43300B0793C /* NarrativeLogsDataAccessService.m */; };
+		320DC2E9169DDBD800B0793C /* LogEntriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 320DC2E8169DDBD800B0793C /* LogEntriesViewController.m */; };
 		32AB99B5169C97F300796870 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B4169C97F300796870 /* UIKit.framework */; };
 		32AB99B7169C97F300796870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B6169C97F300796870 /* Foundation.framework */; };
 		32AB99B9169C97F300796870 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AB99B8169C97F300796870 /* CoreGraphics.framework */; };
@@ -25,6 +26,7 @@
 		32AB99E6169C97F300796870 /* NarrativeLogsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99E5169C97F300796870 /* NarrativeLogsTests.m */; };
 		32AB99F1169C98D300796870 /* NarrativeLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */; };
 		32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F3169C994800796870 /* ShiftsViewController.m */; };
+		32B33E4B169E830D00297DB3 /* ShiftLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		320DC2E4169DD43300B0793C /* NarrativeLogsDataAccessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NarrativeLogsDataAccessService.h; sourceTree = "<group>"; };
 		320DC2E5169DD43300B0793C /* NarrativeLogsDataAccessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NarrativeLogsDataAccessService.m; sourceTree = "<group>"; };
+		320DC2E7169DDBD800B0793C /* LogEntriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEntriesViewController.h; sourceTree = "<group>"; };
+		320DC2E8169DDBD800B0793C /* LogEntriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntriesViewController.m; sourceTree = "<group>"; };
 		32AB99B0169C97F300796870 /* NarrativeLogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarrativeLogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AB99B4169C97F300796870 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		32AB99B6169C97F300796870 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +68,8 @@
 		32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NarrativeLogsViewController.m; sourceTree = "<group>"; };
 		32AB99F2169C994800796870 /* ShiftsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftsViewController.h; sourceTree = "<group>"; };
 		32AB99F3169C994800796870 /* ShiftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftsViewController.m; sourceTree = "<group>"; };
+		32B33E49169E830C00297DB3 /* ShiftLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftLogViewController.h; sourceTree = "<group>"; };
+		32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftLogViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +144,12 @@
 				32AB99C3169C97F300796870 /* NarrativeLogsAppDelegate.h */,
 				32AB99C4169C97F300796870 /* NarrativeLogsAppDelegate.m */,
 				32AB99CC169C97F300796870 /* MainStoryboard.storyboard */,
+				32B33E49169E830C00297DB3 /* ShiftLogViewController.h */,
+				32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */,
 				32AB99F2169C994800796870 /* ShiftsViewController.h */,
 				32AB99F3169C994800796870 /* ShiftsViewController.m */,
+				320DC2E7169DDBD800B0793C /* LogEntriesViewController.h */,
+				320DC2E8169DDBD800B0793C /* LogEntriesViewController.m */,
 				32AB99BB169C97F300796870 /* Supporting Files */,
 			);
 			path = NarrativeLogs;
@@ -294,6 +304,8 @@
 				32AB99F1169C98D300796870 /* NarrativeLogsViewController.m in Sources */,
 				32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */,
 				320DC2E6169DD43300B0793C /* NarrativeLogsDataAccessService.m in Sources */,
+				320DC2E9169DDBD800B0793C /* LogEntriesViewController.m in Sources */,
+				32B33E4B169E830D00297DB3 /* ShiftLogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
