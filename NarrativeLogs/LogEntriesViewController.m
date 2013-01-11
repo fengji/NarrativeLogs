@@ -37,6 +37,11 @@
     return _logEntries;
     
 }
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.tabBarController.navigationItem.hidesBackButton = YES;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

@@ -166,9 +166,14 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="jzl-eI-iXY">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogEntries" textLabel="3WI-cw-5Uc" detailTextLabel="nVk-Qp-OPo" style="IBUITableViewCellStyleSubtitle" id="GDD-ks-qhY">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="748" height="43"/>
@@ -199,7 +204,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIr-JF-FKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3299" y="437"/>
+            <point key="canvasLocation" x="3222" y="292"/>
         </scene>
         <!--View Controller - Position-->
         <scene sceneID="p1g-2z-VRX">
@@ -216,11 +221,13 @@
             </objects>
             <point key="canvasLocation" x="3293" y="1719"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - Log Entries-->
         <scene sceneID="ttj-a9-URJ">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="9y7-xQ-uti" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="sRi-aS-642"/>
+                    <navigationItem key="navigationItem" title="Log Entries" id="sRi-aS-642">
+                        <barButtonItem key="rightBarButtonItem" title="Compose" id="9EG-m1-5Hh"/>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="c8g-5f-r9n">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
