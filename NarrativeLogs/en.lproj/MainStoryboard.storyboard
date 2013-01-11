@@ -111,27 +111,17 @@
             </objects>
             <point key="canvasLocation" x="237" y="517"/>
         </scene>
-        <!--Shifts View Controller-->
+        <!--Shifts View Controller - Shifts-->
         <scene sceneID="zQv-2k-W26">
             <objects>
-                <tableViewController id="i2L-tn-BsZ" customClass="ShiftsViewController" sceneMemberID="viewController">
+                <tableViewController title="Shifts" id="i2L-tn-BsZ" customClass="ShiftsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oMx-QY-oth" userLabel="Shifts">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7ve-ix-eio">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="dAR-50-hM2"/>
-                                <barButtonItem title="Shifts" style="plain" id="H24-I3-YZl"/>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="TkO-RB-GCJ"/>
-                                <barButtonItem title="Logout" width="66" id="Lxs-Mb-SXb"/>
-                            </items>
-                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Shifts Cell" editingAccessoryType="detailDisclosureButton" textLabel="qDS-ex-JhV" detailTextLabel="yWu-bS-Qv6" style="IBUITableViewCellStyleValue1" id="IKe-0n-ELe">
-                                <rect key="frame" x="0.0" y="66" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="735" height="43"/>
@@ -157,7 +147,9 @@
                             <outlet property="delegate" destination="i2L-tn-BsZ" id="WHx-oy-S2H"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="PhD-Fq-CSx"/>
+                    <navigationItem key="navigationItem" title="Shifts" id="PhD-Fq-CSx">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="dG2-fK-cYF"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="9y7-xQ-uti" kind="push" identifier="LogEntriesView" id="Ifx-ki-9YR"/>
                     </connections>
@@ -229,7 +221,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="9y7-xQ-uti" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="sRi-aS-642"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="c8g-5f-r9n">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
