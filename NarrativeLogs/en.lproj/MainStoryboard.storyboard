@@ -159,19 +159,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="PhD-Fq-CSx"/>
                     <connections>
-                        <segue destination="kG2-b0-WJi" kind="push" identifier="LogEntriesView" id="187-AW-G8l"/>
+                        <segue destination="9y7-xQ-uti" kind="push" identifier="LogEntriesView" id="Ifx-ki-9YR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="enY-8D-hzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408" y="761"/>
+            <point key="canvasLocation" x="1404" y="385"/>
         </scene>
-        <!--Log Entries View Controller-->
+        <!--Log Entries View Controller - Entry-->
         <scene sceneID="UqF-Q1-12x">
             <objects>
                 <tableViewController id="kG2-b0-WJi" customClass="LogEntriesViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ryo-6q-cZh">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -202,11 +202,47 @@
                             <outlet property="delegate" destination="kG2-b0-WJi" id="PcK-Gt-AMq"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Entry" id="MG1-TH-N4c"/>
                     <navigationItem key="navigationItem" id="Izk-8A-ROz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIr-JF-FKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2539" y="761"/>
+            <point key="canvasLocation" x="3299" y="437"/>
+        </scene>
+        <!--View Controller - Position-->
+        <scene sceneID="p1g-2z-VRX">
+            <objects>
+                <viewController id="FcK-Yv-CPB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tr1-ZH-nWZ">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Position" id="zoe-oW-KLm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTM-di-SU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3293" y="1719"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="ttj-a9-URJ">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="9y7-xQ-uti" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="sRi-aS-642"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="c8g-5f-r9n">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="FcK-Yv-CPB" kind="relationship" relationship="viewControllers" id="yme-WM-Z66"/>
+                        <segue destination="kG2-b0-WJi" kind="relationship" relationship="viewControllers" id="GJZ-vt-ljv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SRZ-mV-3Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2340" y="683"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="8So-ZL-sbB">
@@ -223,6 +259,20 @@
             <point key="canvasLocation" x="-706" y="-842"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="LogEntriesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesViewController.h"/>
+        </class>
+        <class className="NarrativeLogsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NarrativeLogsViewController.h"/>
+        </class>
+        <class className="ShiftLogViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftLogViewController.h"/>
+        </class>
+        <class className="ShiftsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftsViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
