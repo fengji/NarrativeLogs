@@ -43,7 +43,7 @@
 
 - (ShiftsViewController* ) shiftsViewController
 {
-    ShiftsViewController* shvc = [self.splitViewController.viewControllers lastObject];
+    id shvc = [[self.splitViewController.viewControllers lastObject] topViewController];
     if(![shvc isKindOfClass:[ShiftsViewController class]]){
         shvc = nil;
     }
@@ -53,6 +53,11 @@
 - (void) handleSelectLog:(NSString *)log
 {
     ShiftsViewController* shvc = [self shiftsViewController];
+    if(!shvc){
+        UINavigationController* detailNavigationController = [self.splitViewController.viewControllers lastObject];
+        [detailNavigationController popToRootViewControllerAnimated:YES];
+        shvc = [self shiftsViewController];
+    }
     [shvc loadShifts:log];
 }
 

@@ -8,6 +8,7 @@
 
 #import "ShiftLogViewController.h"
 #import "NarrativeLogsDataAccessService.h"
+#import "ShiftsViewController.h"
 
 @interface ShiftLogViewController ()
 
@@ -38,6 +39,31 @@
     
 }
 
+- (UINavigationController*) detailViewNavigationController{
+    id dvnc = [self.splitViewController.viewControllers lastObject];
+    if(![dvnc isKindOfClass:[UINavigationController class]]){
+        dvnc = nil;
+    }
+    return dvnc;
+}
+
+
+- (void) handleSelectLogItem:(NSString *)logItem
+{
+    // TODO: need to perform segue to different view based on selection
+    id shiftViewController = nil; // [[self detailViewNavigationController] topViewController];
+    
+    NSArray *viewControllers = [[self detailViewNavigationController] viewControllers];
+    NSEnumerator *e = [viewControllers objectEnumerator];
+    id object;
+    while (object = [e nextObject]) {
+        if([object isKindOfClass:[ShiftsViewController class]]){
+            shiftViewController = object;
+            break;
+        }
+    }
+    [shiftViewController performSegueWithIdentifier:@"LogEntriesView" sender:shiftViewController];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -63,6 +89,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // select the first row of the table
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self handleSelectLogItem :cell.textLabel.text];
 }
 
 #pragma mark - Table view data source
@@ -137,6 +172,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //
+    NSString * nShiftLogItem = [self.shiftLogItems objectAtIndex:indexPath.row];
+    [self handleSelectLogItem :nShiftLogItem];
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
