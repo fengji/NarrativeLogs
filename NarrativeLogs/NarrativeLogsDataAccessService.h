@@ -13,4 +13,5 @@
 + (NSArray*) shifts:(id) logName;
 + (NSArray*) logEntries:(id) shift;
 + (NSArray*) shiftLogItems:(id)shift :(id)logType;
++ (NSDictionary*) logEntryDetail: (id)entryId;
 @end

@@ -56,4 +56,14 @@
                             
 }
 
++ (NSDictionary*) logEntryDetail: (id)entryId
+{
+    NSMutableDictionary *entry = [[NSMutableDictionary alloc] init];
+    [entry setValue:@"1" forKey:@"logEntryId"];
+    [entry setValue:@"Unit 1" forKey:@"logEntryName"];
+    [entry setValue:@"log entry 1 descriptions" forKey:@"logEntryDesc"];
+    return entry;
+}
+
+
 @end
