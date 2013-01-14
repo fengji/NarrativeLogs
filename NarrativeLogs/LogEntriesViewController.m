@@ -8,6 +8,7 @@
 
 #import "LogEntriesViewController.h"
 #import "NarrativeLogsDataAccessService.h"
+#import "LogDetailViewController.h"
 
 @interface LogEntriesViewController ()
 
@@ -37,6 +38,21 @@
     return _logEntries;
     
 }
+// implementing delegate method
+-(void) dismissModalView
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"LogDetailView"])
+    {
+        LogDetailViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+    }
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];

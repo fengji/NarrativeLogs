@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModalViewControllerDelegate.h"
 
 @interface LogDetailViewController : UITableViewController 
-
+- (IBAction)backToEntries:(id)sender;
+@property (nonatomic, assign) id<ModalViewControllerDelegate> delegate;
 @end

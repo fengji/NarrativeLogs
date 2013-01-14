@@ -12,6 +12,12 @@
 @end
 
 @implementation LogDetailViewController
+@synthesize delegate = _delegate;
+
+- (IBAction)backToEntries:(id)sender
+{
+    [self.delegate dismissModalView];
+}
 
 - (void)awakeFromNib  // always try to be the split view's delegate
 {
