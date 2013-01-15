@@ -15,7 +15,7 @@
 @implementation LogDetailViewController
 @synthesize delegate = _delegate;
 @synthesize entryDetail = _entryDetail;
-
+@synthesize entryId = _entryId;
 
 - (void) setEntryDetail:(NSDictionary *)entryDetail
 {
@@ -33,7 +33,7 @@
 - (NSDictionary *) entryDetail
 {
     if(!_entryDetail){
-        [self loadEntryDetail: nil];
+        [self loadEntryDetail: self.entryId];
     }
     return _entryDetail;
     

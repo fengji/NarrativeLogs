@@ -13,4 +13,5 @@
 - (IBAction)backToEntries:(id)sender;
 @property (nonatomic, assign) id<ModalViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSDictionary * entryDetail;
+@property (nonatomic,strong) NSString* entryId;
 @end

@@ -48,8 +48,12 @@
 {
     if([[segue identifier] isEqualToString:@"LogDetailView"])
     {
-        LogDetailViewController *viewController = segue.destinationViewController;
+        UINavigationController* nc = segue.destinationViewController;
+        
+        LogDetailViewController *viewController = (LogDetailViewController*)[nc topViewController];
         viewController.delegate = self;
+        // TODO figure out passing a real entry id
+        viewController.entryId = @"dummyId";
     }
 }
 
