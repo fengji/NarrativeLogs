@@ -232,7 +232,7 @@
                             </items>
                         </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogDetailCell" textLabel="7KM-Rd-6j3" detailTextLabel="DhI-e9-B54" style="IBUITableViewCellStyleValue1" id="HP2-fu-EHO">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogDetailCell" editingAccessoryType="checkmark" textLabel="7KM-Rd-6j3" detailTextLabel="DhI-e9-B54" style="IBUITableViewCellStyleValue1" id="HP2-fu-EHO">
                                 <rect key="frame" x="0.0" y="78" width="768" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

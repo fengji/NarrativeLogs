@@ -203,7 +203,19 @@
     }
     cell.textLabel.text = title;
     cell.detailTextLabel.text=subtitle;
+    //
+    cell.textLabel.numberOfLines = 0;
     return cell;
+
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger section = indexPath.section;
+    if(section == 1){
+        return 100;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
 
 }
 
