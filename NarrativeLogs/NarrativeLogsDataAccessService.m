@@ -61,7 +61,36 @@
     NSMutableDictionary *entry = [[NSMutableDictionary alloc] init];
     [entry setValue:@"1" forKey:@"logEntryId"];
     [entry setValue:@"Unit 1" forKey:@"logEntryName"];
-    [entry setValue:@"log entry 1 descriptions" forKey:@"logEntryDesc"];
+    NSArray* entryLabels = [NSArray arrayWithObjects:@"Standard Entry Template",
+                            @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                            @"Position",
+                            @"Unit",
+                            @"Service Status",
+                            @"Standing Order",
+                            @"Open Item",
+                            @"Maintenance Rule",
+                            @"Equipment",
+                            @"Reference Docs",
+                            @"Photos",
+                            @"Share Log Entry With ...",
+                            @"Copy Log Entry To ...",
+                            nil];
+    NSArray* values = [NSArray arrayWithObjects:@"0-SI-EBT-250-100.1 125 VDC Start",
+                       @"",
+                       @"Shift Manager",
+                       @"",
+                       @"",
+                       @"YES",
+                       @"NO",
+                       @"NO",
+                       @"2",
+                       @"2",
+                       @"2",
+                       @"3",
+                       @"1",
+                       nil];
+    [entry setObject:entryLabels forKey:@"entryLabels"];
+    [entry setObject:values forKey:@"values"];
     return entry;
 }
 
