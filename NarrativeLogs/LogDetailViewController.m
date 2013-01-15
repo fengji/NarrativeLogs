@@ -269,6 +269,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    // segue to difference views based on row selection
+    NSArray* entryLabels = [self.entryDetail objectForKey:@"entryLabels"];
+    NSInteger index = [self tableView:tableView globalIndexAtIndexPath:indexPath];
+    NSString* entrySelected = [entryLabels objectAtIndex:index];
+    if([entrySelected isEqualToString:@"Equipment"]){
+        [self performSegueWithIdentifier:@"EquipmentListView" sender:self];
+    }else if([entrySelected isEqualToString:@"Reference Docs"]){
+        [self performSegueWithIdentifier:@"ReferenceDocsView" sender:self];
+    }
+    
 }
 
 @end

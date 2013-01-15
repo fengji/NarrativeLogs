@@ -238,9 +238,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="Sw3-b5-I3E" kind="push" identifier="EquipmentListView" id="1fV-PD-FKK"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -256,12 +253,46 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Annotation" id="Nys-B8-WoA"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Sw3-b5-I3E" kind="push" identifier="EquipmentListView" id="zAj-Qb-UC6"/>
+                        <segue destination="Oze-zf-LZ2" kind="push" identifier="ReferenceDocsView" id="yUz-w5-GOf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yii-XG-6p1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5377" y="277"/>
+            <point key="canvasLocation" x="5535" y="215"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Table View Controller - Refernce Documents-->
+        <scene sceneID="Mxt-iO-fL0">
+            <objects>
+                <tableViewController id="Oze-zf-LZ2" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aoX-t7-97r">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wFt-71-AZP">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Oze-zf-LZ2" id="Oeh-mR-W5I"/>
+                            <outlet property="delegate" destination="Oze-zf-LZ2" id="FKH-iA-IGf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Refernce Documents" id="FoV-1A-Bed"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y7H-8x-eTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6445" y="879"/>
+        </scene>
+        <!--Table View Controller - Log Equipment-->
         <scene sceneID="kRz-sM-PZQ">
             <objects>
                 <tableViewController id="Sw3-b5-I3E" sceneMemberID="viewController">
@@ -285,7 +316,7 @@
                             <outlet property="delegate" destination="Sw3-b5-I3E" id="gIi-H9-q85"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="amx-lV-ZIc"/>
+                    <navigationItem key="navigationItem" title="Log Equipment" id="amx-lV-ZIc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHD-gk-aCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
