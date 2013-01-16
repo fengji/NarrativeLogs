@@ -277,6 +277,8 @@
         [self performSegueWithIdentifier:@"EquipmentListView" sender:self];
     }else if([entrySelected isEqualToString:@"Reference Docs"]){
         [self performSegueWithIdentifier:@"ReferenceDocsView" sender:self];
+    }else if([entrySelected isEqualToString:@"Photos"]){
+        [self performSegueWithIdentifier:@"PhotosView" sender:self];
     }
     
 }
