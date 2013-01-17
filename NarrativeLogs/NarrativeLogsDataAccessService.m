@@ -7,6 +7,7 @@
 //
 
 #import "NarrativeLogsDataAccessService.h"
+#import "FlickrFetcher.h"
 
 @implementation NarrativeLogsDataAccessService
 + (NSArray*) narrativeLogs
@@ -92,6 +93,44 @@
     [entry setObject:entryLabels forKey:@"entryLabels"];
     [entry setObject:values forKey:@"values"];
     return entry;
+}
+
++ (NSArray*) photos:(id)entryId
+{
+    NSArray * photos = nil;
+    // for now load flickr photos
+    NSArray *topPlaces = [FlickrFetcher topPlaces];
+    // sort the array. This array is an array of NSDictionary, sorting key is @"_content"
+    NSSortDescriptor * contentDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_content" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    NSArray * descriptors = [NSArray arrayWithObjects:contentDescriptor, nil];
+    NSArray * sortedTopPlaces =[topPlaces sortedArrayUsingDescriptors:descriptors];
+    
+    if([sortedTopPlaces count] >0){
+        NSDictionary * place = [sortedTopPlaces objectAtIndex: [sortedTopPlaces count]/2];
+        photos = [FlickrFetcher photosInPlace:place maxResults:200];
+    }
+    return photos;
+}
+
++ (NSArray*) thumbnailPhotoImages:(NSArray*)photos
+{
+    NSMutableArray* thumbnailPhotoImages = [[NSMutableArray alloc]initWithCapacity:[photos count]];
+    for(id p in photos){
+        NSDictionary *photo = (NSDictionary*)p;
+        NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatSquare];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage * image =[UIImage imageWithData:data];
+        [thumbnailPhotoImages addObject:image];
+    }
+    return thumbnailPhotoImages;
+}
+
++ (UIImage*) photoImage: (NSDictionary *)photo
+{
+    NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatLarge];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage * image =[UIImage imageWithData:data];
+    return image;
 }
 
 
