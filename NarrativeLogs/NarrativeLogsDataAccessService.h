@@ -16,5 +16,6 @@
 + (NSDictionary*) logEntryDetail: (id)entryId;
 + (NSArray*) photos:(id)entryId;
 + (NSArray*) thumbnailPhotoImages:(NSArray*)photos;
++ (UIImage*) thumbnailPhotoImage: (NSDictionary *)photo;
 + (UIImage*) photoImage: (NSDictionary *)photo;
 @end

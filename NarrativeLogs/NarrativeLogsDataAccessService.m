@@ -125,6 +125,13 @@
     return thumbnailPhotoImages;
 }
 
++ (UIImage*) thumbnailPhotoImage: (NSDictionary *)photo{
+    NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatSquare];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage * image =[UIImage imageWithData:data];
+    return image;
+}
+
 + (UIImage*) photoImage: (NSDictionary *)photo
 {
     NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatLarge];

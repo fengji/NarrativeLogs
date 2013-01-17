@@ -31,6 +31,16 @@
     return _photos;
 }
 
+- (UIActivityIndicatorView *) findSpinner{
+    NSArray *subviews = self.view.subviews;
+    for(id subview in subviews){
+        if([subview isKindOfClass:[UIActivityIndicatorView class]]){
+            return subview;
+        }
+    }
+    return nil;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,7 +54,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.thumbnailImages = [NarrativeLogsDataAccessService thumbnailPhotoImages:self.photos];
+    UIActivityIndicatorViewStyle style = UIActivityIndicatorViewStyleWhiteLarge;
+    UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+    [spinner startAnimating];
+    [self.view addSubview:spinner];
+    [spinner setCenter:self.collectionView.center];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    UIActivityIndicatorView * spinner = [self findSpinner];
+    [spinner removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +85,9 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UIImageView *thumbnailImageView = (UIImageView *)[cell viewWithTag:100];
-    thumbnailImageView.image = [self.thumbnailImages objectAtIndex:indexPath.row];
+    NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
+    
+    thumbnailImageView.image = [NarrativeLogsDataAccessService thumbnailPhotoImage:photo];
     
     return cell;
 }
