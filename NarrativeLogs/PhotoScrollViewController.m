@@ -36,13 +36,12 @@
 }
 
 - (void) updateImageForImageURL: (NSURL *)imageURL{
-    UIActivityIndicatorViewStyle style = UIActivityIndicatorViewStyleWhiteLarge;
+    UIActivityIndicatorViewStyle style = UIActivityIndicatorViewStyleGray;
     
     UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     [spinner startAnimating];
     [self.view addSubview:spinner];
-    [spinner setCenter:self.scrollView.center];
-    
+    [spinner setCenter:self.view.center];    
 
         // asynchronously load image
         dispatch_queue_t downloadQueue = dispatch_queue_create("download_queue", NULL);
@@ -73,13 +72,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
     NSURL *imageURL = [NarrativeLogsDataAccessService imageURL:self.photo];
     [self updateImageForImageURL:imageURL];
-
 }
 
 - (void)didReceiveMemoryWarning
