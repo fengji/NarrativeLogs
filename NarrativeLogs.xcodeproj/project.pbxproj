@@ -30,6 +30,7 @@
 		32B33E4B169E830D00297DB3 /* ShiftLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */; };
 		C0DF742B16A7274200120400 /* PhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */; };
 		C0DF743916A7A2AE00120400 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF743816A7A2AE00120400 /* FlickrFetcher.m */; };
+		C0DF744616A877F300120400 /* PhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF744516A877F200120400 /* PhotoScrollViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		C0DF743816A7A2AE00120400 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		C0DF743A16A7A2C300120400 /* FlickrFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFetcher.h; sourceTree = "<group>"; };
 		C0DF743B16A7A2E500120400 /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
+		C0DF744416A877F200120400 /* PhotoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScrollViewController.h; sourceTree = "<group>"; };
+		C0DF744516A877F200120400 /* PhotoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,8 @@
 				32AB99C3169C97F300796870 /* NarrativeLogsAppDelegate.h */,
 				32AB99C4169C97F300796870 /* NarrativeLogsAppDelegate.m */,
 				32AB99CC169C97F300796870 /* MainStoryboard.storyboard */,
+				C0DF744416A877F200120400 /* PhotoScrollViewController.h */,
+				C0DF744516A877F200120400 /* PhotoScrollViewController.m */,
 				C0DF742916A7274200120400 /* PhotosCollectionViewController.h */,
 				C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */,
 				323BD29816A2180400939512 /* ModalViewControllerDelegate.h */,
@@ -336,6 +341,7 @@
 				323BD28B16A0B0C100939512 /* LogDetailViewController.m in Sources */,
 				C0DF742B16A7274200120400 /* PhotosCollectionViewController.m in Sources */,
 				C0DF743916A7A2AE00120400 /* FlickrFetcher.m in Sources */,
+				C0DF744616A877F300120400 /* PhotoScrollViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

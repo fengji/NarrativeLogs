@@ -8,6 +8,7 @@
 
 #import "PhotosCollectionViewController.h"
 #import "NarrativeLogsDataAccessService.h"
+#import "PhotoScrollViewController.h"
 
 @interface PhotosCollectionViewController ()
 @property (nonatomic, strong) NSArray * thumbnailImages;
@@ -24,6 +25,20 @@
         _photos = [NarrativeLogsDataAccessService photos:nil];
     }
     return _photos;
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ImageView"]){
+        NSInteger index = 0;
+        NSArray* indexPaths = [self.collectionView indexPathsForSelectedItems];
+        NSIndexPath * ip = (NSIndexPath *)[indexPaths objectAtIndex:0];
+        index = ip.row;
+        
+        NSDictionary *selectedPhoto = [self.photos objectAtIndex:index];
+        PhotoScrollViewController* psvc = [segue destinationViewController];
+        psvc.photo = selectedPhoto;
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -72,7 +87,8 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 200;
+    // hard coded for now
+    return 20;
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

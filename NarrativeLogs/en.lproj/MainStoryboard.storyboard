@@ -295,6 +295,9 @@
                                     <constraint firstItem="j42-sC-czd" firstAttribute="trailing" secondItem="D4N-mo-bRw" secondAttribute="trailing" type="default" id="iIF-PA-NvC"/>
                                 </constraints>
                                 <size key="customSize" width="100" height="100"/>
+                                <connections>
+                                    <segue destination="X2k-Bw-Osq" kind="push" identifier="ImageView" id="fI3-iL-VkM"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -307,6 +310,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWp-wP-EdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6465" y="2352"/>
+        </scene>
+        <!--Photo Scroll View Controller-->
+        <scene sceneID="Fy3-af-NkV">
+            <objects>
+                <viewController id="X2k-Bw-Osq" customClass="PhotoScrollViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="93q-aZ-N5q">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-5W-mXk">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-QS-97E">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="959" id="72Y-pN-1p0"/>
+                                            <constraint firstAttribute="width" constant="767" id="sGS-uz-bAS"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gRE-QS-97E" firstAttribute="leading" secondItem="o8K-5W-mXk" secondAttribute="leading" constant="161" id="LjP-RV-AaR"/>
+                                    <constraint firstItem="gRE-QS-97E" firstAttribute="top" secondItem="o8K-5W-mXk" secondAttribute="top" constant="11" id="O61-fN-8xI"/>
+                                    <constraint firstItem="gRE-QS-97E" firstAttribute="bottom" secondItem="o8K-5W-mXk" secondAttribute="bottom" type="default" id="YF4-P7-U1j"/>
+                                    <constraint firstItem="gRE-QS-97E" firstAttribute="trailing" secondItem="o8K-5W-mXk" secondAttribute="trailing" type="default" id="owU-iN-AG7"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="leading" secondItem="93q-aZ-N5q" secondAttribute="leading" constant="-160" id="DNF-cX-zup"/>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="top" secondItem="93q-aZ-N5q" secondAttribute="top" constant="-10" id="eYW-Wc-sgR"/>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="bottom" secondItem="93q-aZ-N5q" secondAttribute="bottom" type="default" id="g5o-72-lkY"/>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="trailing" secondItem="93q-aZ-N5q" secondAttribute="trailing" type="default" id="nIi-k0-C8f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YJS-cq-SJU"/>
+                    <connections>
+                        <outlet property="imageView" destination="gRE-QS-97E" id="2nB-ZG-HMM"/>
+                        <outlet property="scrollView" destination="o8K-5W-mXk" id="g6S-6U-mCF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oAU-ON-O9P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7705" y="2352"/>
         </scene>
         <!--Table View Controller - Refernce Documents-->
         <scene sceneID="Mxt-iO-fL0">
@@ -467,6 +513,13 @@
         </class>
         <class className="NarrativeLogsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NarrativeLogsViewController.h"/>
+        </class>
+        <class className="PhotoScrollViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScrollViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
         </class>
         <class className="PhotosCollectionViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosCollectionViewController.h"/>

@@ -18,4 +18,5 @@
 + (NSArray*) thumbnailPhotoImages:(NSArray*)photos;
 + (UIImage*) thumbnailPhotoImage: (NSDictionary *)photo;
 + (UIImage*) photoImage: (NSDictionary *)photo;
++ (NSURL*) imageURL:(NSDictionary *)photo;
 @end
