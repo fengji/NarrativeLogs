@@ -17,11 +17,6 @@
 @synthesize photos = _photos;
 @synthesize thumbnailImages = _thumbnailImages;
 
-- (void) setPhotos:(NSArray *)photos{
-    if(_photos != photos){
-        _photos = photos;
-    }
-}
 
 - (NSArray*)photos
 {
@@ -29,16 +24,6 @@
         _photos = [NarrativeLogsDataAccessService photos:nil];
     }
     return _photos;
-}
-
-- (UIActivityIndicatorView *) findSpinner{
-    NSArray *subviews = self.view.subviews;
-    for(id subview in subviews){
-        if([subview isKindOfClass:[UIActivityIndicatorView class]]){
-            return subview;
-        }
-    }
-    return nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,14 +42,26 @@
     UIActivityIndicatorViewStyle style = UIActivityIndicatorViewStyleWhiteLarge;
     UIActivityIndicatorView * spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     [spinner startAnimating];
-    [self.view addSubview:spinner];
+    [self.collectionView addSubview:spinner];
     [spinner setCenter:self.collectionView.center];
+    
+    // load images async
+    dispatch_queue_t thumbnailQueue = dispatch_queue_create("download thumbnail", NULL);
+    dispatch_async(thumbnailQueue, ^{
+        self.thumbnailImages = [NarrativeLogsDataAccessService thumbnailPhotoImages:self.photos];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView performBatchUpdates:^{
+                [self.collectionView reloadData];                
+                [spinner removeFromSuperview];
+            } completion:nil];
+        });
+    });
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    UIActivityIndicatorView * spinner = [self findSpinner];
-    [spinner removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,7 +72,7 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.photos count];
+    return 200;
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -85,9 +82,9 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UIImageView *thumbnailImageView = (UIImageView *)[cell viewWithTag:100];
-    NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
+    //NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
     
-    thumbnailImageView.image = [NarrativeLogsDataAccessService thumbnailPhotoImage:photo];
+    thumbnailImageView.image = [self.thumbnailImages objectAtIndex:[indexPath row]];
     
     return cell;
 }
