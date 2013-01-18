@@ -100,6 +100,37 @@
     return [NSArray arrayWithObjects:@"Equipment 1", @"Equipment 2", nil];
 }
 
++ (NSDictionary*) equipmentDetail:(id)equipmentId
+{
+    NSArray* labelArray1 = [NSArray arrayWithObjects:@"Equipment ID", nil];
+    NSArray* labelArray2 = [NSArray arrayWithObjects:@"Description", @"Location", @"Unit",nil];
+    NSArray* labelArray3 = [NSArray arrayWithObjects:@"System",@"Type",@"Building", nil];
+    NSArray* label = [NSArray arrayWithObjects:labelArray1, labelArray2, labelArray3,nil];
+    NSArray* detailValueArray1 = [NSArray arrayWithObjects:@"0-BAT-024-QVC", nil];
+    NSArray* detailValueArray2 = [NSArray arrayWithObjects:@"124 DC VITAL BATTERY III", @"Battery Room", @"U-Common",nil];
+    NSArray* detailValueArray3 = [NSArray arrayWithObjects:@"", @"P-Power", @"",nil];
+    NSArray* detailValue = [NSArray arrayWithObjects:detailValueArray1,detailValueArray2,detailValueArray3, nil];
+    NSMutableDictionary *detail = [[NSMutableDictionary alloc]init];
+    [detail setObject:label forKey:@"label"];
+    [detail setObject:detailValue forKey:@"value"];
+    return detail;
+}
+
++ (NSDictionary*) addEquipmentDetail
+{
+    NSArray* labelArray1 = [NSArray arrayWithObjects:@"Equipment ID", nil];
+    NSArray* labelArray2 = [NSArray arrayWithObjects:@"Configuration", @"Service Status",nil];
+    NSArray* detailValueArray1 = [NSArray arrayWithObjects:@"Selected Equipment", nil];
+    NSArray* detailValueArray2 = [NSArray arrayWithObjects:@"Selected Configuration", @"Selected Service Status",nil];
+    NSArray* label = [NSArray arrayWithObjects:labelArray1, labelArray2,nil];
+    NSArray* detailValue = [NSArray arrayWithObjects:detailValueArray1,detailValueArray2, nil];
+    NSMutableDictionary *detail = [[NSMutableDictionary alloc]init];
+    [detail setObject:label forKey:@"label"];
+    [detail setObject:detailValue forKey:@"value"];
+    return detail;
+}
+
+
 + (NSArray*) photos:(id)entryId
 {
     NSArray * photos = nil;
