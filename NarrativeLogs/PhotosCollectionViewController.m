@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL editMode;
 @property (nonatomic, strong) UIBarButtonItem* addButton;
 @property (nonatomic, strong) UIBarButtonItem* deleteButton;
+@property (nonatomic, strong) UIBarButtonItem* emailButton;
 @end
 
 @implementation PhotosCollectionViewController
@@ -25,6 +26,7 @@
 @synthesize editMode = _editMode;
 @synthesize addButton = _addButton;
 @synthesize deleteButton = _deleteButton;
+@synthesize emailButton = _emailButton;
 
 - (NSArray*)photos
 {
@@ -63,10 +65,23 @@
     return _deleteButton;
 }
 
-- (void) disableEnableDeleteButton{
+- (UIBarButtonItem*) emailButton{
+    if(!_emailButton){
+        _emailButton = [[UIBarButtonItem alloc]init];
+        [_emailButton setTitle:@"Share"];
+        _emailButton.target = self;
+        _emailButton.action=@selector(emailAction:);
+    }
+    
+    return _emailButton;
+}
+
+- (void) disableEnableButtons{
     if([self.selectedPhotos count] >0){
         [self.deleteButton setEnabled:YES];
+        [self.emailButton setEnabled:YES];
     }else{
+        [self.emailButton setEnabled:NO];
         [self.deleteButton setEnabled:NO];
     }
 }
@@ -116,6 +131,9 @@
     NSLog(@"Delete button clicked");
 }
 
+- (IBAction) emailAction: (id)sender{
+    NSLog(@"Share button clicked");
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -148,7 +166,7 @@
     });
     
     [self updateNavBarItems];
-    [self disableEnableDeleteButton];
+    [self disableEnableButtons];
 }
 
 - (void) updateNavBarItems
@@ -157,9 +175,11 @@
     NSMutableArray* rightNavItems = [existingRightNavItems mutableCopy];
     if(self.editMode){
         [rightNavItems insertObject:self.deleteButton atIndex:0];
+        [rightNavItems insertObject:self.emailButton atIndex:0];
         [rightNavItems insertObject:self.addButton atIndex:0];
     }else{
-        if([rightNavItems count] == 3){
+        if([rightNavItems count] == 4){
+            [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
         }
@@ -204,7 +224,7 @@
     
     if(self.editMode){
         [self.selectedPhotos addObject:photo];
-        [self disableEnableDeleteButton];
+        [self disableEnableButtons];
     }else{
         [self performSegueWithIdentifier:@"ImageView" sender:photo];
         [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -216,7 +236,7 @@
     if(self.editMode){
         NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
         [self.selectedPhotos removeObject:photo];
-        [self disableEnableDeleteButton];
+        [self disableEnableButtons];
     }
 }
 
