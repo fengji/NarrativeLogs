@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddEquipmentViewController : UITableViewController
-
+@property (nonatomic,strong) NSDictionary* addEquipmentDetail;
 @end

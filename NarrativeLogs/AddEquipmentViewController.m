@@ -7,12 +7,36 @@
 //
 
 #import "AddEquipmentViewController.h"
+#import "NarrativeLogsDataAccessService.h"
 
 @interface AddEquipmentViewController ()
 
 @end
 
 @implementation AddEquipmentViewController
+@synthesize addEquipmentDetail=_addEquipmentDetail;
+
+- (void) setAddEquipmentDetail:(NSDictionary *)addEquipmentDetail
+{
+    if(_addEquipmentDetail != addEquipmentDetail){
+        _addEquipmentDetail = addEquipmentDetail;
+        [self.tableView reloadData];
+    }
+}
+
+- (void) loadAddEquipmentDetail
+{
+    self.addEquipmentDetail = [NarrativeLogsDataAccessService addEquipmentDetail];
+}
+
+- (NSDictionary *) addEquipmentDetail
+{
+    if(!_addEquipmentDetail){
+        [self loadAddEquipmentDetail];
+    }
+    return _addEquipmentDetail;
+    
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,28 +68,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return [[self.addEquipmentDetail objectForKey:@"label"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSArray* labelArray = [self.addEquipmentDetail objectForKey:@"label"];
+    return [[labelArray objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"AddEquipmentCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     // Configure the cell...
+    NSArray* labels = [self.addEquipmentDetail objectForKey:@"label"];
+    NSArray* values = [self.addEquipmentDetail objectForKey:@"value"];
+    
+    NSArray* currentLabels = [labels objectAtIndex:indexPath.section];
+    NSArray* currentValues = [values objectAtIndex:indexPath.section];
+    NSString* title = [currentLabels objectAtIndex:indexPath.row];
+    NSString*subtitle = [currentValues objectAtIndex:indexPath.row];
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = subtitle;
     
     return cell;
 }
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
