@@ -95,6 +95,11 @@
     return entry;
 }
 
++ (NSArray*) logEquipmentList:(id)entryId
+{
+    return [NSArray arrayWithObjects:@"Equipment 1", @"Equipment 2", nil];
+}
+
 + (NSArray*) photos:(id)entryId
 {
     NSArray * photos = nil;

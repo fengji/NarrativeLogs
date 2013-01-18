@@ -14,9 +14,11 @@
 + (NSArray*) logEntries:(id) shift;
 + (NSArray*) shiftLogItems:(id)shift :(id)logType;
 + (NSDictionary*) logEntryDetail: (id)entryId;
++ (NSArray*) logEquipmentList:(id)entryId;
 + (NSArray*) photos:(id)entryId;
 + (NSArray*) thumbnailPhotoImages:(NSArray*)photos;
 + (UIImage*) thumbnailPhotoImage: (NSDictionary *)photo;
 + (UIImage*) photoImage: (NSDictionary *)photo;
 + (NSURL*) imageURL:(NSDictionary *)photo;
+
 @end

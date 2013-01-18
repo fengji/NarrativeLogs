@@ -28,6 +28,7 @@
 		32AB99F1169C98D300796870 /* NarrativeLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F0169C98D300796870 /* NarrativeLogsViewController.m */; };
 		32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F3169C994800796870 /* ShiftsViewController.m */; };
 		32B33E4B169E830D00297DB3 /* ShiftLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */; };
+		C0D999AE16A8F93E002E3008 /* LogEquipmemtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */; };
 		C0DF742B16A7274200120400 /* PhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */; };
 		C0DF743916A7A2AE00120400 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF743816A7A2AE00120400 /* FlickrFetcher.m */; };
 		C0DF744616A877F300120400 /* PhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF744516A877F200120400 /* PhotoScrollViewController.m */; };
@@ -77,6 +78,8 @@
 		32AB99F3169C994800796870 /* ShiftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftsViewController.m; sourceTree = "<group>"; };
 		32B33E49169E830C00297DB3 /* ShiftLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftLogViewController.h; sourceTree = "<group>"; };
 		32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiftLogViewController.m; sourceTree = "<group>"; };
+		C0D999AC16A8F93E002E3008 /* LogEquipmemtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEquipmemtViewController.h; sourceTree = "<group>"; };
+		C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEquipmemtViewController.m; sourceTree = "<group>"; };
 		C0DF742916A7274200120400 /* PhotosCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCollectionViewController.h; sourceTree = "<group>"; };
 		C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCollectionViewController.m; sourceTree = "<group>"; };
 		C0DF743816A7A2AE00120400 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 			children = (
 				320DC2E4169DD43300B0793C /* NarrativeLogsDataAccessService.h */,
 				320DC2E5169DD43300B0793C /* NarrativeLogsDataAccessService.m */,
+				C0D999AC16A8F93E002E3008 /* LogEquipmemtViewController.h */,
+				C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */,
 			);
 			name = DataAccess;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				C0DF742B16A7274200120400 /* PhotosCollectionViewController.m in Sources */,
 				C0DF743916A7A2AE00120400 /* FlickrFetcher.m in Sources */,
 				C0DF744616A877F300120400 /* PhotoScrollViewController.m in Sources */,
+				C0D999AE16A8F93E002E3008 /* LogEquipmemtViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
