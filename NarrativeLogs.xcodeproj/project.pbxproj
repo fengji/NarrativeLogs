@@ -34,6 +34,8 @@
 		C0DF742B16A7274200120400 /* PhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */; };
 		C0DF743916A7A2AE00120400 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF743816A7A2AE00120400 /* FlickrFetcher.m */; };
 		C0DF744616A877F300120400 /* PhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF744516A877F200120400 /* PhotoScrollViewController.m */; };
+		C0E06A1D16A9BD760032D6D1 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E06A1C16A9BD760032D6D1 /* PhotoCell.m */; };
+		C0E06A2016A9BF7F0032D6D1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A1F16A9BF7F0032D6D1 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,9 @@
 		C0DF743B16A7A2E500120400 /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
 		C0DF744416A877F200120400 /* PhotoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScrollViewController.h; sourceTree = "<group>"; };
 		C0DF744516A877F200120400 /* PhotoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollViewController.m; sourceTree = "<group>"; };
+		C0E06A1B16A9BD760032D6D1 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		C0E06A1C16A9BD760032D6D1 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		C0E06A1F16A9BF7F0032D6D1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E06A2016A9BF7F0032D6D1 /* QuartzCore.framework in Frameworks */,
 				32AB99B5169C97F300796870 /* UIKit.framework in Frameworks */,
 				32AB99B7169C97F300796870 /* Foundation.framework in Frameworks */,
 				32AB99B9169C97F300796870 /* CoreGraphics.framework in Frameworks */,
@@ -131,6 +137,7 @@
 		32AB99A5169C97F300796870 = {
 			isa = PBXGroup;
 			children = (
+				C0E06A1F16A9BF7F0032D6D1 /* QuartzCore.framework */,
 				32AB99BA169C97F300796870 /* NarrativeLogs */,
 				32AB99DE169C97F300796870 /* NarrativeLogsTests */,
 				32AB99B3169C97F300796870 /* Frameworks */,
@@ -161,6 +168,8 @@
 		32AB99BA169C97F300796870 /* NarrativeLogs */ = {
 			isa = PBXGroup;
 			children = (
+				C0E06A1B16A9BD760032D6D1 /* PhotoCell.h */,
+				C0E06A1C16A9BD760032D6D1 /* PhotoCell.m */,
 				C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */,
 				C0D999AC16A8F93E002E3008 /* LogEquipmemtViewController.h */,
 				C0DF742D16A76DAB00120400 /* Flickr */,
@@ -360,6 +369,7 @@
 				C0D999AE16A8F93E002E3008 /* LogEquipmemtViewController.m in Sources */,
 				C0D999B216A9036D002E3008 /* EquipmentDetailViewController.m in Sources */,
 				C0D999B516A9038D002E3008 /* AddEquipmentViewController.m in Sources */,
+				C0E06A1D16A9BD760032D6D1 /* PhotoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
