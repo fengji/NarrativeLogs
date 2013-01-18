@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
 @property (nonatomic) BOOL editMode;
+@property (nonatomic, strong) UIBarButtonItem* addButton;
+@property (nonatomic, strong) UIBarButtonItem* deleteButton;
 @end
 
 @implementation PhotosCollectionViewController
@@ -21,6 +23,8 @@
 @synthesize thumbnailImages = _thumbnailImages;
 @synthesize selectedPhotos = _selectedPhotos;
 @synthesize editMode = _editMode;
+@synthesize addButton = _addButton;
+@synthesize deleteButton = _deleteButton;
 
 - (NSArray*)photos
 {
@@ -28,6 +32,43 @@
         _photos = [NarrativeLogsDataAccessService photos:nil];
     }
     return _photos;
+}
+
+- (NSMutableArray*) selectedPhotos{
+    if(!_selectedPhotos){
+        _selectedPhotos = [@[] mutableCopy];
+    }
+    return _selectedPhotos;
+}
+
+- (UIBarButtonItem*) addButton{
+    if(!_addButton){
+        _addButton = [[UIBarButtonItem alloc] init];
+        [_addButton setTitle:@"Add"];
+        _addButton.target = self;
+        _addButton.action = @selector(addAction:);
+    }
+    return _addButton;
+    
+}
+
+- (UIBarButtonItem*) deleteButton{
+    if(!_deleteButton){
+        _deleteButton = [[UIBarButtonItem alloc]init];
+        [_deleteButton setTitle:@"Delete"];
+        _deleteButton.target = self;
+        _deleteButton.action=@selector(deleteAction:);
+    }
+
+    return _deleteButton;
+}
+
+- (void) disableEnableDeleteButton{
+    if([self.selectedPhotos count] >0){
+        [self.deleteButton setEnabled:YES];
+    }else{
+        [self.deleteButton setEnabled:NO];
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -50,6 +91,7 @@
         self.editMode = YES;
         [editButton setTitle:@"Cancel"];
         [self.collectionView setAllowsMultipleSelection:YES];
+        
     }else{
         self.editMode = NO;
         [editButton setTitle:@"Edit"];
@@ -62,6 +104,16 @@
         
         [self.selectedPhotos removeAllObjects];
     }
+    
+    [self updateNavBarItems];
+}
+
+- (IBAction) addAction:(id)sender {
+    NSLog(@"Add button clicked");
+}
+
+- (IBAction) deleteAction:(id)sender{
+    NSLog(@"Delete button clicked");
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -95,7 +147,25 @@
         });
     });
     
+    [self updateNavBarItems];
+    [self disableEnableDeleteButton];
+}
+
+- (void) updateNavBarItems
+{
+    NSArray* existingRightNavItems = [self.navigationItem rightBarButtonItems];
+    NSMutableArray* rightNavItems = [existingRightNavItems mutableCopy];
+    if(self.editMode){
+        [rightNavItems insertObject:self.deleteButton atIndex:0];
+        [rightNavItems insertObject:self.addButton atIndex:0];
+    }else{
+        if([rightNavItems count] == 3){
+            [rightNavItems removeObjectAtIndex:0];
+            [rightNavItems removeObjectAtIndex:0];
+        }
+    }
     
+    [self.navigationItem setRightBarButtonItems:rightNavItems animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -134,6 +204,7 @@
     
     if(self.editMode){
         [self.selectedPhotos addObject:photo];
+        [self disableEnableDeleteButton];
     }else{
         [self performSegueWithIdentifier:@"ImageView" sender:photo];
         [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -145,6 +216,7 @@
     if(self.editMode){
         NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
         [self.selectedPhotos removeObject:photo];
+        [self disableEnableDeleteButton];
     }
 }
 
