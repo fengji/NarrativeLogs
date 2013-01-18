@@ -295,9 +295,6 @@
                                     <constraint firstItem="j42-sC-czd" firstAttribute="trailing" secondItem="D4N-mo-bRw" secondAttribute="trailing" type="default" id="iIF-PA-NvC"/>
                                 </constraints>
                                 <size key="customSize" width="100" height="100"/>
-                                <connections>
-                                    <segue destination="X2k-Bw-Osq" kind="push" identifier="ImageView" id="fI3-iL-VkM"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -305,7 +302,16 @@
                             <outlet property="delegate" destination="eKc-vU-7vU" id="MBd-j2-Xvq"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Photos" id="fvS-gI-fyd"/>
+                    <navigationItem key="navigationItem" title="Photos" id="fvS-gI-fyd">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="NOM-e2-Oem">
+                            <connections>
+                                <action selector="editPhotos:" destination="eKc-vU-7vU" id="iE9-ro-DtP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="X2k-Bw-Osq" kind="push" identifier="ImageView" id="dc7-HS-etv"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWp-wP-EdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

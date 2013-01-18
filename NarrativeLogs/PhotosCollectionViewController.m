@@ -12,12 +12,15 @@
 
 @interface PhotosCollectionViewController ()
 @property (nonatomic, strong) NSArray * thumbnailImages;
+@property (nonatomic, strong) NSMutableArray * selectedPhotos;
+@property (nonatomic) BOOL editMode;
 @end
 
 @implementation PhotosCollectionViewController
 @synthesize photos = _photos;
 @synthesize thumbnailImages = _thumbnailImages;
-
+@synthesize selectedPhotos = _selectedPhotos;
+@synthesize editMode = _editMode;
 
 - (NSArray*)photos
 {
@@ -38,6 +41,26 @@
         NSDictionary *selectedPhoto = [self.photos objectAtIndex:index];
         PhotoScrollViewController* psvc = [segue destinationViewController];
         psvc.photo = selectedPhoto;
+    }
+}
+
+- (IBAction)editPhotos:(id)sender {
+    UIBarButtonItem * editButton = (UIBarButtonItem*)sender;
+    if(!self.editMode){
+        self.editMode = YES;
+        [editButton setTitle:@"Cancel"];
+        [self.collectionView setAllowsMultipleSelection:YES];
+    }else{
+        self.editMode = NO;
+        [editButton setTitle:@"Edit"];
+        [self.collectionView setAllowsMultipleSelection:NO];
+        
+        for(NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems)
+        {
+            [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        }
+        
+        [self.selectedPhotos removeAllObjects];
     }
 }
 
@@ -103,6 +126,26 @@
     thumbnailImageView.image = [self.thumbnailImages objectAtIndex:[indexPath row]];
     
     return cell;
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
+    
+    if(self.editMode){
+        [self.selectedPhotos addObject:photo];
+    }else{
+        [self performSegueWithIdentifier:@"ImageView" sender:photo];
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(self.editMode){
+        NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
+        [self.selectedPhotos removeObject:photo];
+    }
 }
 
 @end
