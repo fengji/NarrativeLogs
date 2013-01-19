@@ -9,8 +9,9 @@
 #import "PhotosCollectionViewController.h"
 #import "NarrativeLogsDataAccessService.h"
 #import "PhotoScrollViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface PhotosCollectionViewController ()
+@interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate>
 @property (nonatomic, strong) NSArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
 @property (nonatomic) BOOL editMode;
@@ -133,7 +134,48 @@
 
 - (IBAction) emailAction: (id)sender{
     NSLog(@"Share button clicked");
+    [self showMailComposerAndSend];
 }
+
+// email photo
+- (void) showMailComposerAndSend{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        
+        mailer.mailComposeDelegate = self;
+        
+        [mailer setSubject:@"Photos"];
+        
+        NSMutableString *emailBody = [NSMutableString string];
+        for(NSDictionary *photo in self.selectedPhotos)
+        {
+            NSURL* url = [NarrativeLogsDataAccessService imageURL:photo];
+            [emailBody appendFormat:@"<div><img src='%@'></div><br>",[url absoluteString]];
+        }
+        
+        [mailer setMessageBody:emailBody isHTML:YES];
+        
+        [self presentViewController:mailer animated:YES completion:^{}];
+        
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mail Failure"
+                                                        message:@"Your device doesn't support in-app email"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissViewControllerAnimated:YES completion:^{}];
+}
+//
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -239,5 +281,7 @@
         [self disableEnableButtons];
     }
 }
+
+
 
 @end
