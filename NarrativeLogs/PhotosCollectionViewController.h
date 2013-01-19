@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotosCollectionViewController : UICollectionViewController
-@property (nonatomic, strong) NSArray* photos;
+@property (nonatomic, strong) NSMutableArray* photos;
 @end

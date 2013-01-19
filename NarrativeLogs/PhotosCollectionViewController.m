@@ -14,6 +14,7 @@
 @interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate>
 @property (nonatomic, strong) NSArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
+@property (nonatomic, strong) NSMutableArray * selectedPhotoIndices;
 @property (nonatomic) BOOL editMode;
 @property (nonatomic, strong) UIBarButtonItem* addButton;
 @property (nonatomic, strong) UIBarButtonItem* deleteButton;
@@ -24,6 +25,7 @@
 @synthesize photos = _photos;
 @synthesize thumbnailImages = _thumbnailImages;
 @synthesize selectedPhotos = _selectedPhotos;
+@synthesize selectedPhotoIndices = _selectedPhotoIndices;
 @synthesize editMode = _editMode;
 @synthesize addButton = _addButton;
 @synthesize deleteButton = _deleteButton;
@@ -32,7 +34,7 @@
 - (NSArray*)photos
 {
     if(!_photos){
-        _photos = [NarrativeLogsDataAccessService photos:nil];
+        _photos = [[NarrativeLogsDataAccessService photos:nil] mutableCopy];
     }
     return _photos;
 }
@@ -42,6 +44,13 @@
         _selectedPhotos = [@[] mutableCopy];
     }
     return _selectedPhotos;
+}
+
+-(NSMutableArray*) selectedPhotoIndices{
+    if(!_selectedPhotoIndices){
+        _selectedPhotoIndices = [@[] mutableCopy];
+    }
+    return _selectedPhotoIndices;
 }
 
 - (UIBarButtonItem*) addButton{
@@ -119,6 +128,7 @@
         }
         
         [self.selectedPhotos removeAllObjects];
+        [self.selectedPhotoIndices removeAllObjects];
     }
     
     [self updateNavBarItems];
@@ -130,6 +140,15 @@
 
 - (IBAction) deleteAction:(id)sender{
     NSLog(@"Delete button clicked");
+    [self.collectionView performBatchUpdates:^{
+        //update datamodel
+        [self.photos removeObjectsInArray:self.selectedPhotos];
+        //delete cell
+        [self.collectionView deleteItemsAtIndexPaths:self.selectedPhotoIndices];
+        //remove selection
+        [self.selectedPhotos removeAllObjects];
+        [self.selectedPhotoIndices removeAllObjects];
+    } completion:nil];
 }
 
 - (IBAction) emailAction: (id)sender{
@@ -242,8 +261,7 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    // hard coded for now
-    return 20;
+    return [self.photos count];
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -266,6 +284,7 @@
     
     if(self.editMode){
         [self.selectedPhotos addObject:photo];
+        [self.selectedPhotoIndices addObject:indexPath];
         [self disableEnableButtons];
     }else{
         [self performSegueWithIdentifier:@"ImageView" sender:photo];
@@ -278,6 +297,7 @@
     if(self.editMode){
         NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
         [self.selectedPhotos removeObject:photo];
+        [self.selectedPhotoIndices removeObject:indexPath];
         [self disableEnableButtons];
     }
 }
