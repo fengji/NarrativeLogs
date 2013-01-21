@@ -11,7 +11,8 @@
 #import "PhotoScrollViewController.h"
 #import <MessageUI/MessageUI.h>
 
-@interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+@interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
+
 @property (nonatomic, strong) NSArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
 @property (nonatomic, strong) NSMutableArray * selectedPhotoIndices;
@@ -19,6 +20,9 @@
 @property (nonatomic, strong) UIBarButtonItem* addButton;
 @property (nonatomic, strong) UIBarButtonItem* deleteButton;
 @property (nonatomic, strong) UIBarButtonItem* emailButton;
+@property (nonatomic, strong) UIBarButtonItem* cameraButton;
+@property (nonatomic) BOOL newMedia;
+@property (nonatomic, strong) UIPopoverController *poController;
 @end
 
 @implementation PhotosCollectionViewController
@@ -30,6 +34,9 @@
 @synthesize addButton = _addButton;
 @synthesize deleteButton = _deleteButton;
 @synthesize emailButton = _emailButton;
+@synthesize cameraButton = _cameraButton;
+@synthesize newMedia = _newMedia;
+@synthesize poController = _poController;
 
 - (NSArray*)photos
 {
@@ -61,6 +68,17 @@
         _addButton.action = @selector(addAction:);
     }
     return _addButton;
+    
+}
+
+- (UIBarButtonItem*) cameraButton{
+    if(!_cameraButton){
+        _cameraButton = [[UIBarButtonItem alloc] init];
+        [_cameraButton setTitle:@"Camera"];
+        _cameraButton.target = self;
+        _cameraButton.action = @selector(cameraAction:);
+    }
+    return _cameraButton;
     
 }
 
@@ -111,6 +129,7 @@
 }
 
 - (IBAction)editPhotos:(id)sender {
+    [self dismissPopover];
     UIBarButtonItem * editButton = (UIBarButtonItem*)sender;
     if(!self.editMode){
         self.editMode = YES;
@@ -132,14 +151,103 @@
     }
     
     [self updateNavBarItems];
+    [self disableEnableButtons];
+}
+
+- (void) dismissPopover{
+    if(self.poController){
+        [self.poController dismissPopoverAnimated:YES];
+    }
 }
 
 - (IBAction) addAction:(id)sender {
     NSLog(@"Add button clicked");
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+        imagePicker.allowsEditing = YES;
+        self.newMedia = NO;
+        [self dismissPopover];
+        self.poController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        self.poController.delegate=self;
+        [self.poController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+    }
+    
 }
+
+- (void) cameraAction:(id)sender{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+        imagePicker.allowsEditing = NO;
+        self.newMedia = YES;
+        
+        [self dismissPopover];
+        self.poController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        self.poController.delegate=self;
+        [self.poController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    }
+    
+}
+
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    NSLog(@"Image picked %@", info);
+    
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    
+    [self.poController dismissPopoverAnimated:YES];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        
+        if (self.newMedia){
+            UIImageWriteToSavedPhotosAlbum(image,
+                                           self,
+                                           @selector(image:finishedSavingWithError:contextInfo:),
+                                           nil);
+        }
+    }
+    else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
+    {
+        // Code here to support video if enabled
+    }
+}
+
+-(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Save failed"
+                              message: @"Failed to save image"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+}
+
 
 - (IBAction) deleteAction:(id)sender{
     NSLog(@"Delete button clicked");
+    [self dismissPopover];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"The selected photos will be removed from the log." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     [alertView show];
 }
@@ -174,6 +282,7 @@
 
 - (IBAction) emailAction: (id)sender{
     NSLog(@"Share button clicked");
+    [self dismissPopover];
     [self showMailComposerAndSend];
 }
 
@@ -260,8 +369,10 @@
         [rightNavItems insertObject:self.deleteButton atIndex:0];
         [rightNavItems insertObject:self.emailButton atIndex:0];
         [rightNavItems insertObject:self.addButton atIndex:0];
+        [rightNavItems insertObject:self.cameraButton atIndex:0];
     }else{
-        if([rightNavItems count] == 4){
+        if([rightNavItems count] == 5){
+            [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
