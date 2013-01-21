@@ -11,7 +11,7 @@
 #import "PhotoScrollViewController.h"
 #import <MessageUI/MessageUI.h>
 
-@interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate>
+@interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
 @property (nonatomic, strong) NSMutableArray * selectedPhotoIndices;
@@ -140,15 +140,36 @@
 
 - (IBAction) deleteAction:(id)sender{
     NSLog(@"Delete button clicked");
-    [self.collectionView performBatchUpdates:^{
-        //update datamodel
-        [self.photos removeObjectsInArray:self.selectedPhotos];
-        //delete cell
-        [self.collectionView deleteItemsAtIndexPaths:self.selectedPhotoIndices];
-        //remove selection
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"The selected photos will be removed from the log." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    [alertView show];
+}
+// delegate methods for UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // when OK clicked
+    if(buttonIndex == alertView.firstOtherButtonIndex){
+        [self.collectionView performBatchUpdates:^{
+            //update datamodel
+            [self.photos removeObjectsInArray:self.selectedPhotos];
+            //delete cell
+            [self.collectionView deleteItemsAtIndexPaths:self.selectedPhotoIndices];
+            //remove selection
+            [self.selectedPhotos removeAllObjects];
+            [self.selectedPhotoIndices removeAllObjects];
+        } completion:nil];
+        [self disableEnableButtons];
+    }
+}
+
+- (void) alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    // when Cancel clicked
+    if(buttonIndex == alertView.cancelButtonIndex){
         [self.selectedPhotos removeAllObjects];
         [self.selectedPhotoIndices removeAllObjects];
-    } completion:nil];
+        [self.collectionView reloadData];
+        [self disableEnableButtons];
+    }
 }
 
 - (IBAction) emailAction: (id)sender{
@@ -189,6 +210,7 @@
     }
 }
 
+// delegate method for MFMailComposeViewControllerDelegate
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     [controller dismissViewControllerAnimated:YES completion:^{}];
