@@ -200,9 +200,8 @@
         self.newMedia = YES;
         
         [self dismissPopover];
-        self.poController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        self.poController.delegate=self;
-        [self.poController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [self presentViewController:imagePicker
+                           animated:YES completion:nil];
     }
     
 }
@@ -227,6 +226,8 @@
                                            @selector(image:finishedSavingWithError:contextInfo:),
                                            nil);
              */
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
             [library writeImageToSavedPhotosAlbum:[image CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
                 if (error) {
                     UIAlertView *alert = [[UIAlertView alloc]
@@ -300,7 +301,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
