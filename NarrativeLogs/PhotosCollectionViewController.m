@@ -10,10 +10,11 @@
 #import "NarrativeLogsDataAccessService.h"
 #import "PhotoScrollViewController.h"
 #import <MessageUI/MessageUI.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 
-@property (nonatomic, strong) NSArray * thumbnailImages;
+@property (nonatomic, strong) NSMutableArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
 @property (nonatomic, strong) NSMutableArray * selectedPhotoIndices;
 @property (nonatomic) BOOL editMode;
@@ -123,6 +124,8 @@
         index = ip.row;
         
         NSDictionary *selectedPhoto = [self.photos objectAtIndex:index];
+        NSLog(@"%@", selectedPhoto);
+        
         PhotoScrollViewController* psvc = [segue destinationViewController];
         psvc.photo = selectedPhoto;
     }
@@ -173,6 +176,7 @@
         imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
         imagePicker.allowsEditing = YES;
         self.newMedia = NO;
+        
         [self dismissPopover];
         self.poController = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
         self.poController.delegate=self;
@@ -219,6 +223,38 @@
                                            self,
                                            @selector(image:finishedSavingWithError:contextInfo:),
                                            nil);
+        }else{
+            // add to photo list
+            NSURL *url = info[UIImagePickerControllerReferenceURL];
+            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            [library assetForURL:url resultBlock:^(ALAsset *asset) {
+                UIImage * thumbNailImage = [UIImage imageWithCGImage: [asset thumbnail]];
+                //UIImage * regularImage = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage] ];
+                ALAssetRepresentation* representation = [asset defaultRepresentation];
+                
+                // Retrieve the image orientation from the ALAsset
+                UIImageOrientation orientation = UIImageOrientationUp;
+                NSNumber* orientationValue = [asset valueForProperty:@"ALAssetPropertyOrientation"];
+                if (orientationValue != nil) {
+                    orientation = [orientationValue intValue];
+                }
+                
+                CGFloat scale  = 1;
+                UIImage* regularImage = [UIImage imageWithCGImage:[representation fullResolutionImage]
+                                                     scale:scale orientation:orientation];
+                
+                NSMutableDictionary * newPhoto = [[NSMutableDictionary alloc] init];
+                [newPhoto setObject:thumbNailImage forKey:@"thumbnailImage"];
+                [newPhoto setObject:regularImage forKey:@"regularImage"];
+                [self.photos addObject:newPhoto];
+                [self.thumbnailImages addObject:thumbNailImage];
+                [self.collectionView reloadData];
+            } failureBlock:^(NSError *error) {
+                
+            }];
+            
+            
+            
         }
     }
     else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
@@ -348,7 +384,7 @@
     // load images async
     dispatch_queue_t thumbnailQueue = dispatch_queue_create("download thumbnail", NULL);
     dispatch_async(thumbnailQueue, ^{
-        self.thumbnailImages = [NarrativeLogsDataAccessService thumbnailPhotoImages:self.photos];
+        self.thumbnailImages = [[NarrativeLogsDataAccessService thumbnailPhotoImages:self.photos] mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView performBatchUpdates:^{
                 [self.collectionView reloadData];                

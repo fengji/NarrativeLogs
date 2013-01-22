@@ -38,6 +38,7 @@
 		C0E06A2016A9BF7F0032D6D1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A1F16A9BF7F0032D6D1 /* QuartzCore.framework */; };
 		C0E06A3616A9FF210032D6D1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A3516A9FF210032D6D1 /* MessageUI.framework */; };
 		C0E06A5016ADCC360032D6D1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A4F16ADCC360032D6D1 /* MobileCoreServices.framework */; };
+		C0E06A5216ADFBEB0032D6D1 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A5116ADFBEB0032D6D1 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		C0E06A1F16A9BF7F0032D6D1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C0E06A3516A9FF210032D6D1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C0E06A4F16ADCC360032D6D1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C0E06A5116ADFBEB0032D6D1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E06A5216ADFBEB0032D6D1 /* AssetsLibrary.framework in Frameworks */,
 				C0E06A5016ADCC360032D6D1 /* MobileCoreServices.framework in Frameworks */,
 				C0E06A3616A9FF210032D6D1 /* MessageUI.framework in Frameworks */,
 				C0E06A2016A9BF7F0032D6D1 /* QuartzCore.framework in Frameworks */,
@@ -162,6 +165,7 @@
 		32AB99B3169C97F300796870 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0E06A5116ADFBEB0032D6D1 /* AssetsLibrary.framework */,
 				C0E06A4F16ADCC360032D6D1 /* MobileCoreServices.framework */,
 				C0E06A3516A9FF210032D6D1 /* MessageUI.framework */,
 				C0E06A1F16A9BF7F0032D6D1 /* QuartzCore.framework */,

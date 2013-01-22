@@ -71,9 +71,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    NSURL *imageURL = [NarrativeLogsDataAccessService imageURL:self.photo];
-    [self updateImageForImageURL:imageURL];
+	// image is already in photo.
+    if([self.photo objectForKey:@"regularImage"]){
+        self.imageView.image = [self.photo objectForKey:@"regularImage"];
+        [self setUpScrollViewProperties];
+    }else{
+        NSURL *imageURL = [NarrativeLogsDataAccessService imageURL:self.photo];
+        [self updateImageForImageURL:imageURL];
+    }
 }
 
 - (void)didReceiveMemoryWarning
