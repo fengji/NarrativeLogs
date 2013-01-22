@@ -330,7 +330,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-5W-mXk">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-QS-97E">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-QS-97E">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="959" id="72Y-pN-1p0"/>
                                             <constraint firstAttribute="width" constant="767" id="sGS-uz-bAS"/>

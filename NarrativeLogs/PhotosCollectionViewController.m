@@ -217,43 +217,34 @@
     
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         UIImage *image = info[UIImagePickerControllerOriginalImage];
-        
+        NSURL *url = info[UIImagePickerControllerReferenceURL];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+
         if (self.newMedia){
+            /**
             UIImageWriteToSavedPhotosAlbum(image,
                                            self,
                                            @selector(image:finishedSavingWithError:contextInfo:),
                                            nil);
+             */
+            [library writeImageToSavedPhotosAlbum:[image CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+                if (error) {
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Save failed"
+                                          message: @"Failed to save image"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
+                }else{
+                    // add image from camera roll to photo list
+                    [self addPhotoFromCameraRoll:library withURL:assetURL];
+                    
+                }
+            }];
         }else{
             // add to photo list
-            NSURL *url = info[UIImagePickerControllerReferenceURL];
-            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-            [library assetForURL:url resultBlock:^(ALAsset *asset) {
-                UIImage * thumbNailImage = [UIImage imageWithCGImage: [asset thumbnail]];
-                //UIImage * regularImage = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage] ];
-                ALAssetRepresentation* representation = [asset defaultRepresentation];
-                
-                // Retrieve the image orientation from the ALAsset
-                UIImageOrientation orientation = UIImageOrientationUp;
-                NSNumber* orientationValue = [asset valueForProperty:@"ALAssetPropertyOrientation"];
-                if (orientationValue != nil) {
-                    orientation = [orientationValue intValue];
-                }
-                
-                CGFloat scale  = 1;
-                UIImage* regularImage = [UIImage imageWithCGImage:[representation fullResolutionImage]
-                                                     scale:scale orientation:orientation];
-                
-                NSMutableDictionary * newPhoto = [[NSMutableDictionary alloc] init];
-                [newPhoto setObject:thumbNailImage forKey:@"thumbnailImage"];
-                [newPhoto setObject:regularImage forKey:@"regularImage"];
-                [self.photos addObject:newPhoto];
-                [self.thumbnailImages addObject:thumbNailImage];
-                [self.collectionView reloadData];
-            } failureBlock:^(NSError *error) {
-                
-            }];
-            
-            
+            [self addPhotoFromCameraRoll:library withURL:url];
             
         }
     }
@@ -261,6 +252,34 @@
     {
         // Code here to support video if enabled
     }
+}
+
+- (void) addPhotoFromCameraRoll: (ALAssetsLibrary*)library withURL:(NSURL*) url{
+    [library assetForURL:url resultBlock:^(ALAsset *asset) {
+        UIImage * thumbNailImage = [UIImage imageWithCGImage: [asset thumbnail]];
+        //UIImage * regularImage = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage] ];
+        ALAssetRepresentation* representation = [asset defaultRepresentation];
+        
+        // Retrieve the image orientation from the ALAsset
+        UIImageOrientation orientation = UIImageOrientationUp;
+        NSNumber* orientationValue = [asset valueForProperty:@"ALAssetPropertyOrientation"];
+        if (orientationValue != nil) {
+            orientation = [orientationValue intValue];
+        }
+        
+        CGFloat scale  = 1;
+        UIImage* regularImage = [UIImage imageWithCGImage:[representation fullResolutionImage]
+                                                    scale:scale orientation:orientation];
+        
+        NSMutableDictionary * newPhoto = [[NSMutableDictionary alloc] init];
+        [newPhoto setObject:thumbNailImage forKey:@"thumbnailImage"];
+        [newPhoto setObject:regularImage forKey:@"regularImage"];
+        [self.photos addObject:newPhoto];
+        [self.thumbnailImages addObject:thumbNailImage];
+        [self.collectionView reloadData];
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 -(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
@@ -273,6 +292,10 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
         [alert show];
+    }else{
+        // add image from camera roll to photo list
+
+
     }
 }
 

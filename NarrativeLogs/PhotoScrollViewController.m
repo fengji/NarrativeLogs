@@ -29,6 +29,7 @@
     self.imageView.frame = CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height);
     
     self.scrollView.zoomScale = self.scrollView.bounds.size.width/self.imageView.image.size.width;
+    NSLog(@"zome scale: %f", self.scrollView.zoomScale);
     float temp = self.scrollView.bounds.size.height/self.imageView.image.size.height;
     if(self.scrollView.zoomScale<temp){
         self.scrollView.zoomScale = temp;
@@ -85,6 +86,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 
 @end
