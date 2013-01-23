@@ -191,7 +191,7 @@
          UIImagePickerControllerSourceTypeCamera])
     {
         UIImagePickerController *imagePicker =
-        [[UIImagePickerController alloc] init];
+        [[UIImagePickerController alloc] init];        
         imagePicker.delegate = self;
         imagePicker.sourceType =
         UIImagePickerControllerSourceTypeCamera;
@@ -206,7 +206,6 @@
     
 }
 
-
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSLog(@"Image picked %@", info);
     
@@ -215,7 +214,7 @@
     [self.poController dismissPopoverAnimated:YES];
     
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
-        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        UIImage *image = [self updateImageOrientation:info[UIImagePickerControllerOriginalImage]];
         NSURL *url = info[UIImagePickerControllerReferenceURL];
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
 
@@ -254,6 +253,21 @@
         // Code here to support video if enabled
     }
 }
+
+// 
+- (UIImage *)updateImageOrientation: (UIImage*)image {
+    if (image.imageOrientation == UIImageOrientationUp){        
+        return image;
+    }
+
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
+    [image drawInRect:(CGRect){0, 0, image.size}];
+    UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return normalizedImage;
+}
+
+
 
 - (void) addPhotoFromCameraRoll: (ALAssetsLibrary*)library withURL:(NSURL*) url{
     [library assetForURL:url resultBlock:^(ALAsset *asset) {
