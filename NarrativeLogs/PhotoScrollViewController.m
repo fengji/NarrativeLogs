@@ -12,14 +12,17 @@
 @interface PhotoScrollViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic) NSInteger imageIndex;
 @end
 
 @implementation PhotoScrollViewController
 @synthesize photo = _photo;
+@synthesize photos = _photos;
+@synthesize slideshow = _slideshow;
 @synthesize imageView = _imageView;
 @synthesize scrollView = _scrollView;
-
+@synthesize timer = _timer;
 
 - (void) setUpScrollViewProperties{
     // reset zoomScale back to 1 first before changing the content size.
@@ -72,16 +75,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// image is already in photo.
-    if([self.photo objectForKey:@"regularImage"]){
-        self.imageView.image = [self.photo objectForKey:@"regularImage"];
+    
+    if(self.slideshow){
+        self.imageIndex = 0;
+        [self updateImageForPhoto:[self.photos objectAtIndex:self.imageIndex]];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval: 5.0
+                                                      target: self
+                                                    selector: @selector(handleTimer:)
+                                                    userInfo: nil
+                                                     repeats: YES];
+    }else{
+        [self updateImageForPhoto:self.photo];
+    }
+  
+}
+
+- (void) handleTimer: (NSTimer *) timer {
+    self.imageIndex++;
+    if ( self.imageIndex >= [self.photos count] )
+        self.imageIndex = 0;
+    
+    NSDictionary * currentPhoto = [self.photos objectAtIndex:self.imageIndex];
+    [self updateImageForPhoto:currentPhoto];
+}
+
+- (void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.timer invalidate];
+}
+- (void) updateImageForPhoto:(NSDictionary *) thePhoto{
+    if([thePhoto objectForKey:@"regularImage"]){
+        self.imageView.image = [thePhoto objectForKey:@"regularImage"];
         [self setUpScrollViewProperties];
     }else{
-        NSURL *imageURL = [NarrativeLogsDataAccessService imageURL:self.photo];
+        NSURL *imageURL = [NarrativeLogsDataAccessService imageURL:thePhoto];
         [self updateImageForImageURL:imageURL];
     }
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

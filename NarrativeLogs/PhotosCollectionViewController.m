@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIBarButtonItem* deleteButton;
 @property (nonatomic, strong) UIBarButtonItem* emailButton;
 @property (nonatomic, strong) UIBarButtonItem* cameraButton;
+@property (nonatomic, strong) UIBarButtonItem* slideshowButton;
 @property (nonatomic) BOOL newMedia;
 @property (nonatomic, strong) UIPopoverController *poController;
 @end
@@ -36,6 +37,7 @@
 @synthesize deleteButton = _deleteButton;
 @synthesize emailButton = _emailButton;
 @synthesize cameraButton = _cameraButton;
+@synthesize slideshowButton = _slideshowButton;
 @synthesize newMedia = _newMedia;
 @synthesize poController = _poController;
 
@@ -105,6 +107,17 @@
     return _emailButton;
 }
 
+- (UIBarButtonItem*) slideshowButton{
+    if(!_slideshowButton){
+        _slideshowButton = [[UIBarButtonItem alloc]init];
+        [_slideshowButton setTitle:@"Slideshow"];
+        _slideshowButton.target = self;
+        _slideshowButton.action=@selector(slideshowAction:);
+    }
+    
+    return _slideshowButton;
+}
+
 - (void) disableEnableButtons{
     if([self.selectedPhotos count] >0){
         [self.deleteButton setEnabled:YES];
@@ -118,16 +131,21 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"ImageView"]){
-        NSInteger index = 0;
-        NSArray* indexPaths = [self.collectionView indexPathsForSelectedItems];
-        NSIndexPath * ip = (NSIndexPath *)[indexPaths objectAtIndex:0];
-        index = ip.row;
-        
-        NSDictionary *selectedPhoto = [self.photos objectAtIndex:index];
-        NSLog(@"%@", selectedPhoto);
-        
         PhotoScrollViewController* psvc = [segue destinationViewController];
-        psvc.photo = selectedPhoto;
+        if([sender isKindOfClass:[UIBarButtonItem class]]){
+            psvc.slideshow = YES;
+        }else{
+            NSInteger index = 0;
+            NSArray* indexPaths = [self.collectionView indexPathsForSelectedItems];
+            NSIndexPath * ip = (NSIndexPath *)[indexPaths objectAtIndex:0];
+            index = ip.row;
+            
+            NSDictionary *selectedPhoto = [self.photos objectAtIndex:index];
+            NSLog(@"%@", selectedPhoto);
+            psvc.photo = selectedPhoto;
+            psvc.slideshow = NO;
+        }
+        psvc.photos = self.photos;
     }
 }
 
@@ -161,6 +179,11 @@
     if(self.poController){
         [self.poController dismissPopoverAnimated:YES];
     }
+}
+
+- (void) slideshowAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"ImageView" sender:sender];
 }
 
 - (IBAction) addAction:(id)sender {
@@ -444,8 +467,10 @@
         [rightNavItems insertObject:self.emailButton atIndex:0];
         [rightNavItems insertObject:self.addButton atIndex:0];
         [rightNavItems insertObject:self.cameraButton atIndex:0];
+        [rightNavItems insertObject:self.slideshowButton atIndex:0];
     }else{
-        if([rightNavItems count] == 5){
+        if([rightNavItems count] == 6){
+            [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];

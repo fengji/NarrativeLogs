@@ -10,5 +10,7 @@
 
 @interface PhotoScrollViewController : UIViewController
 @property (nonatomic, strong) NSDictionary *photo;
+@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic) BOOL slideshow;
 - (void) updateImageForImageURL: (NSURL *)imageURL;
 @end
