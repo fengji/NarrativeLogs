@@ -328,7 +328,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-5W-mXk">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" minimumZoomScale="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-5W-mXk">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-QS-97E">
                                         <constraints>
@@ -338,19 +338,19 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="gRE-QS-97E" firstAttribute="top" secondItem="o8K-5W-mXk" secondAttribute="top" constant="20" symbolic="YES" type="default" id="GIH-wK-c1a"/>
+                                    <constraint firstItem="gRE-QS-97E" firstAttribute="top" secondItem="o8K-5W-mXk" secondAttribute="top" constant="8" id="dbO-tH-EJr"/>
                                     <constraint firstItem="gRE-QS-97E" firstAttribute="leading" secondItem="o8K-5W-mXk" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mm7-At-7eh"/>
                                     <constraint firstItem="gRE-QS-97E" firstAttribute="bottom" secondItem="o8K-5W-mXk" secondAttribute="bottom" type="default" id="p4R-Ti-Pmi"/>
-                                    <constraint firstAttribute="trailing" secondItem="gRE-QS-97E" secondAttribute="trailing" constant="138" id="rGy-Vw-bgB"/>
+                                    <constraint firstAttribute="trailing" secondItem="gRE-QS-97E" secondAttribute="trailing" constant="-22" id="pIj-bO-ZkD"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o8K-5W-mXk" firstAttribute="leading" secondItem="93q-aZ-N5q" secondAttribute="leading" constant="-20" id="NNS-9w-ICm"/>
-                            <constraint firstAttribute="trailing" secondItem="o8K-5W-mXk" secondAttribute="trailing" constant="-140" id="aeg-ZC-XAX"/>
-                            <constraint firstItem="o8K-5W-mXk" firstAttribute="top" secondItem="93q-aZ-N5q" secondAttribute="top" constant="-20" id="b97-e2-zBf"/>
-                            <constraint firstAttribute="bottom" secondItem="o8K-5W-mXk" secondAttribute="bottom" constant="10" id="gBJ-Us-AZp"/>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="trailing" secondItem="93q-aZ-N5q" secondAttribute="trailing" type="default" id="G98-Pr-GYV"/>
+                            <constraint firstAttribute="bottom" secondItem="o8K-5W-mXk" secondAttribute="bottom" constant="2" id="eTb-qX-SVi"/>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="leading" secondItem="93q-aZ-N5q" secondAttribute="leading" type="default" id="vcF-Qr-0HI"/>
+                            <constraint firstItem="o8K-5W-mXk" firstAttribute="top" secondItem="93q-aZ-N5q" secondAttribute="top" type="default" id="ymi-Q1-luj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YJS-cq-SJU"/>

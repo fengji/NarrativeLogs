@@ -463,19 +463,22 @@
     NSArray* existingRightNavItems = [self.navigationItem rightBarButtonItems];
     NSMutableArray* rightNavItems = [existingRightNavItems mutableCopy];
     if(self.editMode){
+        // remove slideshow button
+        [rightNavItems removeObjectAtIndex:0];
         [rightNavItems insertObject:self.deleteButton atIndex:0];
         [rightNavItems insertObject:self.emailButton atIndex:0];
         [rightNavItems insertObject:self.addButton atIndex:0];
         [rightNavItems insertObject:self.cameraButton atIndex:0];
-        [rightNavItems insertObject:self.slideshowButton atIndex:0];
+        
     }else{
-        if([rightNavItems count] == 6){
-            [rightNavItems removeObjectAtIndex:0];
+        if([rightNavItems count] == 5){
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
         }
+        //add slideshow button
+        [rightNavItems insertObject:self.slideshowButton atIndex:0];
     }
     
     [self.navigationItem setRightBarButtonItems:rightNavItems animated:YES];
