@@ -130,6 +130,29 @@
     return detail;
 }
 
++ (NSArray*) existingEquipment{
+    NSMutableArray * equipArray = [[NSMutableArray alloc]init];
+    // Alphabetic array
+    NSMutableArray *alphabetArray;
+    alphabetArray = [[NSMutableArray alloc] init];
+    for(char c = 'A'; c <= 'Z'; c++)
+    {
+        [alphabetArray addObject:[NSString stringWithFormat:@"%c", c]];
+    }
+    
+    for(NSString * prefix in alphabetArray){
+        NSMutableDictionary *equip = [[NSMutableDictionary alloc] init];
+        [equip setObject:[NSString stringWithFormat:@"%@ item 1",  prefix] forKey:@"title"];
+        [equipArray addObject:equip];
+        equip = [[NSMutableDictionary alloc] init];
+        [equip setObject:[NSString stringWithFormat:@"%@ item 2",  prefix] forKey:@"title"];
+        [equipArray addObject:equip];        
+        equip = [[NSMutableDictionary alloc] init];
+        [equip setObject:[NSString stringWithFormat:@"%@ item 3",  prefix] forKey:@"title"];
+        [equipArray addObject:equip];
+    }
+    return equipArray;
+}
 
 + (NSArray*) photos:(id)entryId
 {

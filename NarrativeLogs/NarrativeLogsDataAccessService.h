@@ -17,6 +17,7 @@
 + (NSArray*) logEquipmentList:(id)entryId;
 + (NSDictionary*) equipmentDetail:(id)equipmentId;
 + (NSDictionary*) addEquipmentDetail;
++ (NSArray*) existingEquipment;
 + (NSArray*) photos:(id)entryId;
 + (NSArray*) thumbnailPhotoImages:(NSArray*)photos;
 + (UIImage*) thumbnailPhotoImage: (NSDictionary *)photo;
