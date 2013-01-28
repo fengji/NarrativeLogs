@@ -92,6 +92,14 @@
     [self.navigationItem setRightBarButtonItems:rightNavItems animated:YES];
 }
 
+- (void) disableEnableButtons{
+    if([self.selectedPhotos count] >0){
+        [self.selectedButton setEnabled:YES];
+    }else{
+        [self.selectedButton setEnabled:NO];
+    }
+}
+
 - (void) loadCameraRollPhotosWithSpinner: (UIActivityIndicatorView*) spinner
 {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -154,6 +162,7 @@
     [spinner setCenter:self.collectionView.center];
     
     [self loadCameraRollPhotosWithSpinner:spinner];
+    [self disableEnableButtons];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -190,6 +199,7 @@
 {
     NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
     [self.selectedPhotos addObject:photo];
+    [self disableEnableButtons];
 
 }
 
@@ -197,5 +207,6 @@
 {
     NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
     [self.selectedPhotos removeObject:photo];
+    [self disableEnableButtons];
 }
 @end
