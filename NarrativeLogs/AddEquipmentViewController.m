@@ -147,7 +147,10 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    [self performSegueWithIdentifier:@"SelectEquipmentView" sender:self];
+    UITableViewCell * cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    if([cell.textLabel.text isEqualToString:@"Equipment ID"]){
+        [self performSegueWithIdentifier:@"SelectEquipmentView" sender:self];
+    }
 }
 
 @end
