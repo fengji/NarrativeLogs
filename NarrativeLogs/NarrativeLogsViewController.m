@@ -12,23 +12,18 @@
 #import "SplitViewBarButtonItemPresenter.h"
 
 @interface NarrativeLogsViewController ()
-@property (nonatomic) BOOL initialized;
 @end
 
 @implementation NarrativeLogsViewController
 @synthesize logs = _logs;
-@synthesize initialized = _initialized;
 
 - (void) initialize
 {
-    if(!self.initialized){
-        // select the first row of the table
-        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
-        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [self  handleSelectLog:cell.textLabel.text];
-        self.initialized = YES;
-    }
+    // select the first row of the table
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self  handleSelectLog:cell.textLabel.text];
 }
 
 - (void)awakeFromNib  // always try to be the split view's delegate
