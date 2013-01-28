@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSMutableArray * selectedPhotoIndices;
 @property (nonatomic) BOOL editMode;
 @property (nonatomic, strong) UIBarButtonItem* addButton;
+@property (nonatomic,strong) UIBarButtonItem* multiAddButton;
 @property (nonatomic, strong) UIBarButtonItem* deleteButton;
 @property (nonatomic, strong) UIBarButtonItem* emailButton;
 @property (nonatomic, strong) UIBarButtonItem* cameraButton;
@@ -34,6 +35,7 @@
 @synthesize selectedPhotoIndices = _selectedPhotoIndices;
 @synthesize editMode = _editMode;
 @synthesize addButton = _addButton;
+@synthesize multiAddButton = _multiAddButton;
 @synthesize deleteButton = _deleteButton;
 @synthesize emailButton = _emailButton;
 @synthesize cameraButton = _cameraButton;
@@ -71,6 +73,17 @@
         _addButton.action = @selector(addAction:);
     }
     return _addButton;
+    
+}
+
+- (UIBarButtonItem*) multiAddButton{
+    if(!_multiAddButton){
+        _multiAddButton = [[UIBarButtonItem alloc] init];
+        [_multiAddButton setTitle:@"Multi-Add"];
+        _multiAddButton.target = self;
+        _multiAddButton.action = @selector(multiAddAction:);
+    }
+    return _multiAddButton;
     
 }
 
@@ -207,6 +220,11 @@
         
     }
     
+}
+
+- (IBAction)multiAddAction:(id)sender{
+    NSLog(@"Multi-Add button clicked");
+    [self performSegueWithIdentifier:@"CameraRollView" sender:sender];
 }
 
 - (void) cameraAction:(id)sender{
@@ -468,10 +486,12 @@
         [rightNavItems insertObject:self.deleteButton atIndex:0];
         [rightNavItems insertObject:self.emailButton atIndex:0];
         [rightNavItems insertObject:self.addButton atIndex:0];
+        [rightNavItems insertObject:self.multiAddButton atIndex:0];
         [rightNavItems insertObject:self.cameraButton atIndex:0];
         
     }else{
-        if([rightNavItems count] == 5){
+        if([rightNavItems count] == 6){
+            [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
             [rightNavItems removeObjectAtIndex:0];
@@ -486,6 +506,27 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[self findSpinner] removeFromSuperview];
+}
+
+- (UIActivityIndicatorView *) findSpinner{
+    NSArray *subviews = self.view.subviews;
+    for(id subview in subviews){
+        if([subview isKindOfClass:[UIActivityIndicatorView class]]){
+            return subview;
+        }
+    }
+    return nil;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

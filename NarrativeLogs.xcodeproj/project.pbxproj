@@ -29,6 +29,7 @@
 		32AB99F4169C994800796870 /* ShiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB99F3169C994800796870 /* ShiftsViewController.m */; };
 		32B33E4B169E830D00297DB3 /* ShiftLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B33E4A169E830C00297DB3 /* ShiftLogViewController.m */; };
 		C049340C16B4282A007F8408 /* LogEntriesTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C049340B16B4282A007F8408 /* LogEntriesTabBarController.m */; };
+		C0B64FEC16B6DA60003281D3 /* CameraRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B64FEB16B6DA60003281D3 /* CameraRollViewController.m */; };
 		C0D999AE16A8F93E002E3008 /* LogEquipmemtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */; };
 		C0D999B216A9036D002E3008 /* EquipmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D999B116A9036D002E3008 /* EquipmentDetailViewController.m */; };
 		C0D999B516A9038D002E3008 /* AddEquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D999B416A9038D002E3008 /* AddEquipmentViewController.m */; };
@@ -89,6 +90,8 @@
 		C04933F316B301E6007F8408 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 		C049340A16B4282A007F8408 /* LogEntriesTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEntriesTabBarController.h; sourceTree = "<group>"; };
 		C049340B16B4282A007F8408 /* LogEntriesTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntriesTabBarController.m; sourceTree = "<group>"; };
+		C0B64FEA16B6DA60003281D3 /* CameraRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraRollViewController.h; sourceTree = "<group>"; };
+		C0B64FEB16B6DA60003281D3 /* CameraRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraRollViewController.m; sourceTree = "<group>"; };
 		C0D999AC16A8F93E002E3008 /* LogEquipmemtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEquipmemtViewController.h; sourceTree = "<group>"; };
 		C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEquipmemtViewController.m; sourceTree = "<group>"; };
 		C0D999B016A9036D002E3008 /* EquipmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentDetailViewController.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				32AB99C3169C97F300796870 /* NarrativeLogsAppDelegate.h */,
 				32AB99C4169C97F300796870 /* NarrativeLogsAppDelegate.m */,
 				32AB99CC169C97F300796870 /* MainStoryboard.storyboard */,
+				C0B64FEA16B6DA60003281D3 /* CameraRollViewController.h */,
+				C0B64FEB16B6DA60003281D3 /* CameraRollViewController.m */,
 				C049340A16B4282A007F8408 /* LogEntriesTabBarController.h */,
 				C049340B16B4282A007F8408 /* LogEntriesTabBarController.m */,
 				C0D999B016A9036D002E3008 /* EquipmentDetailViewController.h */,
@@ -390,6 +395,7 @@
 				C0D999B516A9038D002E3008 /* AddEquipmentViewController.m in Sources */,
 				C0E06A1D16A9BD760032D6D1 /* PhotoCell.m in Sources */,
 				C049340C16B4282A007F8408 /* LogEntriesTabBarController.m in Sources */,
+				C0B64FEC16B6DA60003281D3 /* CameraRollViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
