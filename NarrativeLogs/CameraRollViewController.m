@@ -161,8 +161,12 @@
     [self.collectionView addSubview:spinner];
     [spinner setCenter:self.collectionView.center];
     
-    [self loadCameraRollPhotosWithSpinner:spinner];
+    dispatch_queue_t thumbnailQueue = dispatch_queue_create("load images", NULL);
+    dispatch_async(thumbnailQueue, ^{
+        [self loadCameraRollPhotosWithSpinner:spinner];
+    });
     [self disableEnableButtons];
+    NSLog(@"CameraRollViewController's viewDidLoad called");
 }
 
 - (void) viewWillAppear:(BOOL)animated
