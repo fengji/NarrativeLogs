@@ -92,6 +92,7 @@
 		C049340B16B4282A007F8408 /* LogEntriesTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntriesTabBarController.m; sourceTree = "<group>"; };
 		C0B64FEA16B6DA60003281D3 /* CameraRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraRollViewController.h; sourceTree = "<group>"; };
 		C0B64FEB16B6DA60003281D3 /* CameraRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraRollViewController.m; sourceTree = "<group>"; };
+		C0B64FF616B6FDEE003281D3 /* PhotoUpdate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoUpdate.h; sourceTree = "<group>"; };
 		C0D999AC16A8F93E002E3008 /* LogEquipmemtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEquipmemtViewController.h; sourceTree = "<group>"; };
 		C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEquipmemtViewController.m; sourceTree = "<group>"; };
 		C0D999B016A9036D002E3008 /* EquipmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentDetailViewController.h; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 				C0DF744416A877F200120400 /* PhotoScrollViewController.h */,
 				C0DF744516A877F200120400 /* PhotoScrollViewController.m */,
 				C0DF742916A7274200120400 /* PhotosCollectionViewController.h */,
+				C0B64FF616B6FDEE003281D3 /* PhotoUpdate.h */,
 				C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */,
 				323BD29816A2180400939512 /* ModalViewControllerDelegate.h */,
 				32B33E49169E830C00297DB3 /* ShiftLogViewController.h */,

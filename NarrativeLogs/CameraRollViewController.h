@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoUpdate.h"
 
-@interface CameraRollViewController : UICollectionViewController
+@interface CameraRollViewController : UICollectionViewController 
 @property (nonatomic, strong) NSMutableArray* photos;
+@property (nonatomic, retain) id<PhotoUpdate> delegate;
 @end

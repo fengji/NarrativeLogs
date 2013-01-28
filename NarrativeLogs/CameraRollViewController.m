@@ -8,11 +8,11 @@
 
 #import "CameraRollViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "PhotosCollectionViewController.h"
 
 @interface CameraRollViewController ()
 @property (nonatomic, strong) NSMutableArray * thumbnailImages;
 @property (nonatomic, strong) NSMutableArray * selectedPhotos;
-@property (nonatomic, strong) NSMutableArray * selectedPhotoIndices;
 @property (nonatomic, strong) UIBarButtonItem *selectedButton;
 @property (nonatomic, strong) UIBarButtonItem *allButton;
 
@@ -25,13 +25,7 @@
 @synthesize selectedPhotos = _selectedPhotos;
 @synthesize selectedButton = _selectedButton;
 @synthesize allButton = _allButton;
-
--(NSMutableArray*) selectedPhotoIndices{
-    if(!_selectedPhotoIndices){
-        _selectedPhotoIndices = [@[] mutableCopy];
-    }
-    return _selectedPhotoIndices;
-}
+@synthesize delegate = _delegate;
 
 - (NSArray*)photos
 {
@@ -80,11 +74,14 @@
 }
 
 - (IBAction) addAllAction:(id)sender {
+    [self.delegate updatePhotosWith:self.photos];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
 - (IBAction) addSelectedAction:(id)sender {
-    
+    [self.delegate updatePhotosWith:self.selectedPhotos];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) updateNavBarItems
@@ -193,7 +190,6 @@
 {
     NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
     [self.selectedPhotos addObject:photo];
-    [self.selectedPhotoIndices addObject:indexPath];
 
 }
 
@@ -201,6 +197,5 @@
 {
     NSDictionary* photo = [self.photos objectAtIndex:indexPath.row];
     [self.selectedPhotos removeObject:photo];
-    [self.selectedPhotoIndices removeObject:indexPath];
 }
 @end

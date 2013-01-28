@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-
-@interface PhotosCollectionViewController : UICollectionViewController
+#import "PhotoUpdate.h"
+@interface PhotosCollectionViewController : UICollectionViewController <PhotoUpdate>
 @property (nonatomic, strong) NSMutableArray* photos;
 @end

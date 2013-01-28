@@ -11,6 +11,7 @@
 #import "PhotoScrollViewController.h"
 #import <MessageUI/MessageUI.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "CameraRollViewController.h"
 
 @interface PhotosCollectionViewController () <MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 
@@ -159,7 +160,22 @@
             psvc.slideshow = NO;
         }
         psvc.photos = self.photos;
+    }else if([segue.identifier isEqualToString:@"CameraRollView"]){
+        CameraRollViewController * crvc = [segue destinationViewController];
+        crvc.delegate = self;
     }
+}
+
+- (void) updatePhotosWith:(NSArray *)photos{
+    [self.photos addObjectsFromArray:photos];
+    NSMutableArray *newThumbnails = [@[] mutableCopy];
+    for(NSDictionary* p in photos){
+        id image = [p objectForKey:@"thumbnailImage"];
+        [newThumbnails addObject:image];
+    }
+    [self.thumbnailImages addObjectsFromArray:newThumbnails];
+    
+    [self.collectionView reloadData];
 }
 
 - (IBAction)editPhotos:(id)sender {
