@@ -544,10 +544,43 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Equipment" id="0G6-7C-uDL"/>
+                    <connections>
+                        <segue destination="Nua-6s-qZ4" kind="push" identifier="SelectEquipmentView" id="cac-U7-ZQg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDS-cc-4eE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7491" y="-1712"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="OZK-Gy-WoD">
+            <objects>
+                <tableViewController id="Nua-6s-qZ4" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4K8-HP-HF4">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EquipmentTypeCell" id="kqg-ku-EBO">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Nua-6s-qZ4" id="RQ8-3C-b2Q"/>
+                            <outlet property="delegate" destination="Nua-6s-qZ4" id="dMB-vo-Ax8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gTD-sW-l0a"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QJZ-LM-HG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8673" y="-2431"/>
         </scene>
         <!--Equipment Detail View Controller - Equipment Detail-->
         <scene sceneID="fAW-m6-wbj">
@@ -652,6 +685,10 @@
         </class>
         <class className="CameraRollViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CameraRollViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAllAction:"/>
+                <relationship kind="action" name="addSelectedAction:"/>
+            </relationships>
         </class>
         <class className="EquipmentDetailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentDetailViewController.h"/>

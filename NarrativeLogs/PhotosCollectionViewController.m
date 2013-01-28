@@ -524,25 +524,10 @@
     [super viewDidAppear:animated];
 }
 
-- (void) viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [[self findSpinner] removeFromSuperview];
-}
-
-- (UIActivityIndicatorView *) findSpinner{
-    NSArray *subviews = self.view.subviews;
-    for(id subview in subviews){
-        if([subview isKindOfClass:[UIActivityIndicatorView class]]){
-            return subview;
-        }
-    }
-    return nil;
-}
-
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self dismissPopover];
 }
 
 - (void)didReceiveMemoryWarning
