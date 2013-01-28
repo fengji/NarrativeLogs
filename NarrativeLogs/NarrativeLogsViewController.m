@@ -9,13 +9,33 @@
 #import "NarrativeLogsViewController.h"
 #import "ShiftsViewController.h"
 #import "NarrativeLogsDataAccessService.h"
+#import "SplitViewBarButtonItemPresenter.h"
 
 @interface NarrativeLogsViewController ()
-
+@property (nonatomic) BOOL initialized;
 @end
 
 @implementation NarrativeLogsViewController
 @synthesize logs = _logs;
+@synthesize initialized = _initialized;
+
+- (void) initialize
+{
+    if(!self.initialized){
+        // select the first row of the table
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [self  handleSelectLog:cell.textLabel.text];
+        self.initialized = YES;
+    }
+}
+
+- (void)awakeFromNib  // always try to be the split view's delegate
+{
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
+}
 
 - (void) setLogs:(NSArray *)logs
 {
@@ -115,28 +135,37 @@
     
     self.refreshControl = refresh;
     
-    
+    [self initialize];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    // select the first row of the table
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    // select the first row of the table
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
-    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [self  handleSelectLog:cell.textLabel.text];
+    [self initialize];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) willMoveToParentViewController:(UIViewController *)parent
+{
+    [super willMoveToParentViewController:parent];
+    [self initialize];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -221,6 +250,57 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+
+#pragma mark - UISplitViewControllerDelegate
+- (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
+{
+    UINavigationController* detailViewNavigationController = [self detailViewNavigationController];
+    
+    id detailVC = [detailViewNavigationController visibleViewController];
+    /**
+    if([detailVC isKindOfClass: [UITabBarController class]]){
+        detailVC = [((UITabBarController*)detailVC) selectedViewController];
+    }
+    */
+    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
+        detailVC = nil;
+    }
+    return detailVC;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation
+{
+    return  UIInterfaceOrientationIsPortrait(orientation);
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem
+       forPopoverController:(UIPopoverController *)pc
+{
+    barButtonItem.title = @"Logs";
+    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;  
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
+}
+
+
+
+- (UINavigationController*) detailViewNavigationController{
+    id dvnc = [self.splitViewController.viewControllers lastObject];
+    if(![dvnc isKindOfClass:[UINavigationController class]]){
+        dvnc = nil;
+    }
+    return dvnc;
 }
 
 @end

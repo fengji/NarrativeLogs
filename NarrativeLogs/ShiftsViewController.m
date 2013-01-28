@@ -16,6 +16,7 @@
 
 @implementation ShiftsViewController
 @synthesize shifts = _shifts;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 - (void) setShifts:(NSArray *)shifts
 {
@@ -46,6 +47,47 @@
     return nlvc;
 }
 
+
+- (void)handleSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    NSMutableArray *navItems = [[self.navigationItem leftBarButtonItems] mutableCopy];
+    if(!navItems){
+        navItems = [@[] mutableCopy];
+    }
+    if (_splitViewBarButtonItem) [navItems removeObject:_splitViewBarButtonItem];
+    if (splitViewBarButtonItem) [navItems insertObject:splitViewBarButtonItem atIndex:0];
+    [self.navigationItem setLeftBarButtonItems:navItems animated:YES];
+    _splitViewBarButtonItem = splitViewBarButtonItem;
+}
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    if (splitViewBarButtonItem != _splitViewBarButtonItem) {
+        [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
+    }
+}
+
+// Does the bar button item transfer from existing detail view controller to destination
+
+- (void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [self splitViewBarButtonItem];
+    //[self setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) {
+        if([destinationViewController conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter) ]){
+            [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
+        }
+    }
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"LogEntriesView"]) {
+        id destinationViewController = segue.destinationViewController;
+        [self transferSplitViewBarButtonItemToViewController: destinationViewController];
+    }
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -64,12 +106,24 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self handleSplitViewBarButtonItem:self.splitViewBarButtonItem];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self handleSplitViewBarButtonItem:self.splitViewBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES; // support all orientations
 }
 
 #pragma mark - Table view data source

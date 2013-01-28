@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NarrativeLogsViewController : UITableViewController
+@interface NarrativeLogsViewController : UITableViewController <UISplitViewControllerDelegate>
 @property (nonatomic, strong) NSArray * logs;
 @end

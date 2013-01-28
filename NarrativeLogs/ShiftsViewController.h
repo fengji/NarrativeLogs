@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SplitViewBarButtonItemPresenter.h"
 
-@interface ShiftsViewController : UITableViewController
+@interface ShiftsViewController : UITableViewController <SplitViewBarButtonItemPresenter>
 @property (nonatomic, strong) NSArray* shifts;
 - (void) loadShifts:(id)sender;
 @end

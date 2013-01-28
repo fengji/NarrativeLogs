@@ -9,6 +9,7 @@
 #import "LogEntriesViewController.h"
 #import "NarrativeLogsDataAccessService.h"
 #import "LogDetailViewController.h"
+#import "LogEntriesTabBarController.h"
 
 @interface LogEntriesViewController ()
 
@@ -38,6 +39,12 @@
     return _logEntries;
     
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES; // support all orientations
+}
+
 // implementing delegate method
 -(void) dismissModalView
 {
@@ -81,6 +88,11 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+ }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning

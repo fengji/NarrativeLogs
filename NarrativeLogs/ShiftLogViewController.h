@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShiftLogViewController : UITableViewController
+@interface ShiftLogViewController : UITableViewController <UISplitViewControllerDelegate>
 @property (nonatomic, strong) NSArray* shiftLogItems;
 @end

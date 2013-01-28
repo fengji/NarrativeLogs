@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="1404" y="385"/>
         </scene>
-        <!--Log Entries View Controller - Entry-->
+        <!--Log Entries View Controller - Entries-->
         <scene sceneID="UqF-Q1-12x">
             <objects>
                 <tableViewController id="kG2-b0-WJi" customClass="LogEntriesViewController" sceneMemberID="viewController">
@@ -203,11 +203,26 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Entry" id="MG1-TH-N4c"/>
-                    <navigationItem key="navigationItem" id="Izk-8A-ROz"/>
+                    <navigationItem key="navigationItem" title="Entries" id="Izk-8A-ROz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIr-JF-FKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3314" y="178"/>
+        </scene>
+        <!--View Controller - Position-->
+        <scene sceneID="Scy-5E-mb7">
+            <objects>
+                <viewController id="KZE-HB-X63" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZuF-vo-7dm">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Position" id="CP7-ja-nhP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YTn-P4-YgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3401" y="1409"/>
         </scene>
         <!--Log Detail View Controller - LogDetail-->
         <scene sceneID="dtX-Gw-EPX">
@@ -528,25 +543,10 @@
             </objects>
             <point key="canvasLocation" x="7533" y="-405"/>
         </scene>
-        <!--View Controller - Position-->
-        <scene sceneID="p1g-2z-VRX">
-            <objects>
-                <viewController id="FcK-Yv-CPB" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tr1-ZH-nWZ">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Position" id="zoe-oW-KLm"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dTM-di-SU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3293" y="1719"/>
-        </scene>
-        <!--Tab Bar Controller - Log Entries-->
+        <!--Log Entries Tab Bar Controller - Log Entries-->
         <scene sceneID="ttj-a9-URJ">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="9y7-xQ-uti" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="9y7-xQ-uti" customClass="LogEntriesTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Log Entries" id="sRi-aS-642">
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="9EG-m1-5Hh"/>
                     </navigationItem>
@@ -557,13 +557,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="FcK-Yv-CPB" kind="relationship" relationship="viewControllers" id="yme-WM-Z66"/>
                         <segue destination="kG2-b0-WJi" kind="relationship" relationship="viewControllers" id="GJZ-vt-ljv"/>
+                        <segue destination="KZE-HB-X63" kind="relationship" relationship="viewControllers" id="rgl-Q3-2Vz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRZ-mV-3Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="683"/>
+            <point key="canvasLocation" x="2352" y="829"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="8So-ZL-sbB">
@@ -610,6 +610,9 @@
             <relationships>
                 <relationship kind="action" name="backToEntries:"/>
             </relationships>
+        </class>
+        <class className="LogEntriesTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesTabBarController.h"/>
         </class>
         <class className="LogEntriesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesViewController.h"/>
