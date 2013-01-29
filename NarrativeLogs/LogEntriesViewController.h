@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ModalViewControllerDelegate.h"
 
-@interface LogEntriesViewController : UITableViewController <ModalViewControllerDelegate>
+@interface LogEntriesViewController : UITableViewController <ModalViewControllerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSArray* logEntries;
 @end

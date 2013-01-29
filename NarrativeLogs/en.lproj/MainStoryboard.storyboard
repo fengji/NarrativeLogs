@@ -170,6 +170,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="kG2-b0-WJi" id="4bo-b8-njC"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogEntries" textLabel="3WI-cw-5Uc" detailTextLabel="nVk-Qp-OPo" style="IBUITableViewCellStyleSubtitle" id="GDD-ks-qhY">
@@ -204,10 +207,13 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Entry" id="MG1-TH-N4c"/>
                     <navigationItem key="navigationItem" title="Entries" id="Izk-8A-ROz"/>
+                    <connections>
+                        <outlet property="search" destination="jzl-eI-iXY" id="OQb-2x-boI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIr-JF-FKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3314" y="178"/>
+            <point key="canvasLocation" x="3376" y="-54"/>
         </scene>
         <!--View Controller - Position-->
         <scene sceneID="Scy-5E-mb7">
@@ -714,6 +720,9 @@
         </class>
         <class className="LogEntriesViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="search" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
         <class className="LogEquipmemtViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEquipmemtViewController.h"/>
@@ -736,6 +745,13 @@
         </class>
         <class className="PhotosCollectionViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosCollectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAction:"/>
+                <relationship kind="action" name="deleteAction:"/>
+                <relationship kind="action" name="editPhotos:"/>
+                <relationship kind="action" name="emailAction:"/>
+                <relationship kind="action" name="multiAddAction:"/>
+            </relationships>
         </class>
         <class className="ShiftLogViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftLogViewController.h"/>

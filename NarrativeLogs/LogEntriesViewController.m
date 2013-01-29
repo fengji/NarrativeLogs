@@ -13,22 +13,32 @@
 
 @interface LogEntriesViewController ()
 
+@property (weak, nonatomic) IBOutlet UISearchBar *search;
+@property (strong, nonatomic) NSMutableArray* displayedLogEntries;
 @end
 
 @implementation LogEntriesViewController
 @synthesize logEntries = _logEntries;
+@synthesize displayedLogEntries = _displayedLogEntries;
+
+- (void) setDisplayedLogEntries:(NSMutableArray *)displayedLogEntries{
+    if(_displayedLogEntries != displayedLogEntries){
+        _displayedLogEntries = displayedLogEntries;
+        [self.tableView reloadData];
+    }
+}
 
 - (void) setLogEntries:(NSArray *)logEntries
 {
     if(_logEntries != logEntries){
         _logEntries = logEntries;
-        [self.tableView reloadData];
     }
 }
 
 - (void) loadLogEntries:(id)sender
 {
     self.logEntries = [NarrativeLogsDataAccessService logEntries:sender];
+    self.displayedLogEntries = [self.logEntries mutableCopy];
 }
 
 - (NSArray *) logEntries
@@ -36,9 +46,17 @@
     if(!_logEntries){
         [self loadLogEntries: nil];
     }
-    return _logEntries;
-    
+    return _logEntries;    
 }
+
+- (NSArray *) displayedLogEntries
+{
+    if(!_displayedLogEntries){
+        [self loadLogEntries: nil];
+    }
+    return _displayedLogEntries;
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -60,7 +78,9 @@
         LogDetailViewController *viewController = (LogDetailViewController*)[nc topViewController];
         viewController.delegate = self;
         // TODO figure out passing a real entry id
-        viewController.entryId = @"dummyId";
+        NSIndexPath * index = [self.tableView indexPathForSelectedRow];
+        NSDictionary * entry = (NSDictionary*)[self.displayedLogEntries objectAtIndex:index.row];        
+        viewController.entryId = [entry objectForKey:@"logEntryId"];
     }
 }
 
@@ -110,7 +130,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.logEntries count];
+    return [self.displayedLogEntries count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,7 +142,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    id theLogEntry = [self.logEntries objectAtIndex:indexPath.row];
+    id theLogEntry = [self.displayedLogEntries objectAtIndex:indexPath.row];
     NSString *title = nil, *subtitle = nil;
     if([theLogEntry isKindOfClass:[NSDictionary class]]){
         NSDictionary * entry = (NSDictionary *)theLogEntry;
@@ -186,6 +206,43 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"searchBarTextDidBeginEditing");
+}
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"Search button clicked");
+}
+
+- (void) searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"Search end editing");
+}
+
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"text changing");
+    if([searchText length]==0){
+        [self.displayedLogEntries removeAllObjects];
+        self.displayedLogEntries = [self.logEntries mutableCopy];
+        [self.tableView reloadData];
+    }else{
+        [self.displayedLogEntries removeAllObjects];
+        for(NSDictionary* entry in self.logEntries){
+            NSString *entryName = [entry objectForKey:@"logEntryName"];
+            NSString *entryDesc = [entry objectForKey:@"logEntryDesc"];
+            NSRange r1 = [entryName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSRange r2 = [entryDesc rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if(r1.location != NSNotFound || r2.location != NSNotFound){
+                [self.displayedLogEntries addObject:entry];
+            }
+            [self.tableView reloadData];
+        }
+    }
 }
 
 @end

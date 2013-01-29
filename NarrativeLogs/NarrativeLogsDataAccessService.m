@@ -32,22 +32,16 @@
 }
 
 + (NSArray*) logEntries:(id) shift{
-    NSArray * logEntries = nil;
-    // use webservice to load data
-    NSMutableDictionary *entry1 = [[NSMutableDictionary alloc] init];
-    [entry1 setValue:@"1" forKey:@"logEntryId"];
-    [entry1 setValue:@"Unit 1" forKey:@"logEntryName"];
-    [entry1 setValue:@"log entry 1 descriptions" forKey:@"logEntryDesc"];
-    NSMutableDictionary *entry2 = [[NSMutableDictionary alloc] init];
-    [entry2 setValue:@"2" forKey:@"logEntryId"];
-    [entry2 setValue:@"Unit 2" forKey:@"logEntryName"];
-    [entry2 setValue:@"log entry 2 descriptions" forKey:@"logEntryDesc"];
-    NSMutableDictionary *entry3 = [[NSMutableDictionary alloc] init];
-    [entry3 setValue:@"3" forKey:@"logEntryId"];
-    [entry3 setValue:@"Unit 3" forKey:@"logEntryName"];
-    [entry3 setValue:@"log entry 3 descriptions" forKey:@"logEntryDesc"];
-    logEntries = [[NSArray alloc] initWithObjects:entry1, entry2, entry3, nil];
-    return logEntries;
+    // TO be replaced bt web service call
+    NSMutableArray* logEntries = [[NSMutableArray alloc] init];
+    for(int i=0; i<20; i++){
+        NSMutableDictionary *entry = [[NSMutableDictionary alloc] init];
+        [entry setValue:[NSString stringWithFormat:@"%d", i] forKey:@"logEntryId"];
+        [entry setValue:[NSString stringWithFormat:@"Unit %d", i] forKey:@"logEntryName"];
+        [entry setValue:[NSString stringWithFormat:@"Log entry %d description", i] forKey:@"logEntryDesc"];
+        [logEntries addObject:entry];
+    }
+    return [logEntries copy];
 }
 
 + (NSArray*) shiftLogItems:(id)shift :(id)logType
