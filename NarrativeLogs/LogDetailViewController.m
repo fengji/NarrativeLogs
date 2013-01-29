@@ -212,7 +212,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     if(section == 1){
-        return 100;
+        return 130;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
