@@ -240,8 +240,8 @@
             if(r1.location != NSNotFound || r2.location != NSNotFound){
                 [self.displayedLogEntries addObject:entry];
             }
-            [self.tableView reloadData];
         }
+        [self.tableView reloadData];
     }
 }
 

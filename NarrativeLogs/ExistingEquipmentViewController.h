@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EquipmentUpdate.h"
 
-@interface ExistingEquipmentViewController : UITableViewController
+@interface ExistingEquipmentViewController : UITableViewController <UISearchBarDelegate>
 @property (nonatomic, strong) NSArray* equipment;
 @property (nonatomic, strong) id<EquipmentUpdate> equipementUpdateDelegate;
 

@@ -11,18 +11,29 @@
 
 @interface ExistingEquipmentViewController ()
 @property (nonatomic, strong) NSMutableDictionary *sections;
+@property (nonatomic, strong) NSMutableArray* displayedEquipment;
+@property (weak, nonatomic) IBOutlet UISearchBar *search;
 @end
 
 @implementation ExistingEquipmentViewController
 @synthesize equipment = _equipment;
+@synthesize displayedEquipment = _displayedEquipment;
 @synthesize sections = _sections;
 @synthesize equipementUpdateDelegate = _equipementUpdateDelegate;
+@synthesize search = _search;
 
 - (NSArray *) equipment{
     if(!_equipment){
         _equipment = [NarrativeLogsDataAccessService existingEquipment];
     }
     return _equipment;
+}
+
+- (NSArray *) displayedEquipment{
+    if(!_displayedEquipment){
+        _displayedEquipment = [self.equipment mutableCopy];
+    }
+    return _displayedEquipment;
 }
 
 - (NSMutableDictionary *) sections
@@ -52,10 +63,17 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    BOOL found;
+    [self updateSectionData];
     
-    // Loop through the equipment and create our keys
-    for (NSDictionary *e in self.equipment)
+}
+
+- (void) updateSectionData
+{
+    BOOL found;
+    [self.sections removeAllObjects];
+    
+    // Loop through the displayedequipment and create our keys
+    for (NSDictionary *e in self.displayedEquipment)
     {
         NSString *c = [[e objectForKey:@"title"] substringToIndex:1];
         
@@ -76,7 +94,7 @@
     }
     
     // Loop again and sort the books into their respective keys
-    for (NSDictionary *e in self.equipment)
+    for (NSDictionary *e in self.displayedEquipment)
     {
         [[self.sections objectForKey:[[e objectForKey:@"title"] substringToIndex:1]] addObject:e];
     }
@@ -86,7 +104,6 @@
     {
         [[self.sections objectForKey:key] sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -188,6 +205,29 @@
     [self.equipementUpdateDelegate updateEquipmentWith: e];
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"search text changed");
+    NSLog(@"text changing");
+    if([searchText length]==0){
+        [self.displayedEquipment removeAllObjects];
+        self.displayedEquipment = [self.equipment mutableCopy];
+        [self updateSectionData];
+        [self.tableView reloadData];
+    }else{
+        [self.displayedEquipment removeAllObjects];
+        for(NSDictionary* equipment in self.equipment){
+            NSString *title = [equipment objectForKey:@"title"];
+            NSRange r = [title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if(r.location != NSNotFound){
+                [self.displayedEquipment addObject:equipment];
+            }            
+        }
+        [self updateSectionData];
+        [self.tableView reloadData];
+    }
 }
 
 @end

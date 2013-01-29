@@ -566,9 +566,17 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="N03-r4-yFg">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Nua-6s-qZ4" id="156-sl-DKK"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EquipmentTypeCell" textLabel="cu6-el-bqN" style="IBUITableViewCellStyleDefault" id="kqg-ku-EBO">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
@@ -590,10 +598,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Equipment" id="gTD-sW-l0a"/>
+                    <connections>
+                        <outlet property="search" destination="N03-r4-yFg" id="Rsy-Ew-RNG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJZ-LM-HG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8673" y="-2431"/>
+            <point key="canvasLocation" x="8773" y="-2398"/>
         </scene>
         <!--Equipment Detail View Controller - Equipment Detail-->
         <scene sceneID="fAW-m6-wbj">
@@ -692,89 +703,6 @@
             <point key="canvasLocation" x="4403" y="277"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AddEquipmentViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEquipmentViewController.h"/>
-        </class>
-        <class className="CameraRollViewController" superclassName="UICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CameraRollViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addAllAction:"/>
-                <relationship kind="action" name="addSelectedAction:"/>
-            </relationships>
-        </class>
-        <class className="EquipmentDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentDetailViewController.h"/>
-        </class>
-        <class className="ExistingEquipmentViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExistingEquipmentViewController.h"/>
-        </class>
-        <class className="LogDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backToEntries:"/>
-            </relationships>
-        </class>
-        <class className="LogEntriesTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesTabBarController.h"/>
-        </class>
-        <class className="LogEntriesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="search" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="LogEquipmemtViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEquipmemtViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NarrativeLogsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NarrativeLogsViewController.h"/>
-        </class>
-        <class className="PhotoCell" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoCell.h"/>
-        </class>
-        <class className="PhotoScrollViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScrollViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="PhotosCollectionViewController" superclassName="UICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosCollectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addAction:"/>
-                <relationship kind="action" name="deleteAction:"/>
-                <relationship kind="action" name="editPhotos:"/>
-                <relationship kind="action" name="emailAction:"/>
-                <relationship kind="action" name="multiAddAction:"/>
-            </relationships>
-        </class>
-        <class className="ShiftLogViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftLogViewController.h"/>
-        </class>
-        <class className="ShiftsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftsViewController.h"/>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
