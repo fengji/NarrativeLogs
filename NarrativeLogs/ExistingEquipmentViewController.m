@@ -16,7 +16,7 @@
 @implementation ExistingEquipmentViewController
 @synthesize equipment = _equipment;
 @synthesize sections = _sections;
-
+@synthesize equipementUpdateDelegate = _equipementUpdateDelegate;
 
 - (NSArray *) equipment{
     if(!_equipment){
@@ -182,6 +182,11 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    NSMutableDictionary* e = [[NSMutableDictionary alloc]init];    
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    [e setObject:cell.textLabel.text forKey:@"equipmentIdValue"];
+    [self.equipementUpdateDelegate updateEquipmentWith: e];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

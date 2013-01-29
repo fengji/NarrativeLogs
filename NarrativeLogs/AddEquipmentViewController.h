@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EquipmentUpdate.h"
 
-@interface AddEquipmentViewController : UITableViewController
+@interface AddEquipmentViewController : UITableViewController <EquipmentUpdate>
 @property (nonatomic,strong) NSDictionary* addEquipmentDetail;
 @end

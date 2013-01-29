@@ -96,6 +96,7 @@
 		C0B64FF616B6FDEE003281D3 /* PhotoUpdate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoUpdate.h; sourceTree = "<group>"; };
 		C0B6500416B728C2003281D3 /* ExistingEquipmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingEquipmentViewController.h; sourceTree = "<group>"; };
 		C0B6500516B728C2003281D3 /* ExistingEquipmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingEquipmentViewController.m; sourceTree = "<group>"; };
+		C0B6500716B74118003281D3 /* EquipmentUpdate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquipmentUpdate.h; sourceTree = "<group>"; };
 		C0D999AC16A8F93E002E3008 /* LogEquipmemtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEquipmemtViewController.h; sourceTree = "<group>"; };
 		C0D999AD16A8F93E002E3008 /* LogEquipmemtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEquipmemtViewController.m; sourceTree = "<group>"; };
 		C0D999B016A9036D002E3008 /* EquipmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentDetailViewController.h; sourceTree = "<group>"; };
@@ -213,6 +214,7 @@
 				C0D999B116A9036D002E3008 /* EquipmentDetailViewController.m */,
 				C0D999B316A9038D002E3008 /* AddEquipmentViewController.h */,
 				C0D999B416A9038D002E3008 /* AddEquipmentViewController.m */,
+				C0B6500716B74118003281D3 /* EquipmentUpdate.h */,
 				C0DF744416A877F200120400 /* PhotoScrollViewController.h */,
 				C0DF744516A877F200120400 /* PhotoScrollViewController.m */,
 				C0DF742916A7274200120400 /* PhotosCollectionViewController.h */,

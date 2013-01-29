@@ -8,6 +8,8 @@
 
 #import "AddEquipmentViewController.h"
 #import "NarrativeLogsDataAccessService.h"
+#import "ExistingEquipmentViewController.h"
+
 
 @interface AddEquipmentViewController ()
 
@@ -15,6 +17,28 @@
 
 @implementation AddEquipmentViewController
 @synthesize addEquipmentDetail=_addEquipmentDetail;
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+}
+
+- (void) updateEquipmentWith:(NSDictionary *)equipment
+{
+    NSLog(@"updateEquipmentWith called");
+    NSString* equipementIdValue = [equipment objectForKey:@"equipmentIdValue"];
+    NSLog(@"equipmentIdValue %@: ", equipementIdValue);
+    if(equipementIdValue){
+        NSMutableDictionary *equipmentDetail = [self.addEquipmentDetail mutableCopy];
+        NSMutableArray* valueArray = [[equipmentDetail objectForKey:@"value"] mutableCopy];
+        NSMutableArray* equipmentValueArray = [@[equipementIdValue] mutableCopy];
+        [valueArray removeObjectAtIndex:0];
+        [valueArray insertObject:equipmentValueArray atIndex:0];
+        [equipmentDetail removeObjectForKey:@"value"];
+        [equipmentDetail setObject:valueArray forKey:@"value"];
+        self.addEquipmentDetail = [equipmentDetail copy];
+    }
+}
 
 - (void) setAddEquipmentDetail:(NSDictionary *)addEquipmentDetail
 {
@@ -62,6 +86,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    id destinationController = segue.destinationViewController;
+    if([destinationController isKindOfClass:[ExistingEquipmentViewController class]]){
+        ((ExistingEquipmentViewController*) destinationController).equipementUpdateDelegate = self;
+    }
 }
 
 #pragma mark - Table view data source

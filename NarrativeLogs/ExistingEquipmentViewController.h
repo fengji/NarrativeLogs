@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EquipmentUpdate.h"
 
 @interface ExistingEquipmentViewController : UITableViewController
 @property (nonatomic, strong) NSArray* equipment;
+@property (nonatomic, strong) id<EquipmentUpdate> equipementUpdateDelegate;
+
 @end
