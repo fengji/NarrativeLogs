@@ -145,21 +145,45 @@
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if([cell.textLabel.text isEqualToString:@"Reactor Power"]){
-        UISlider* theSlider =  [[UISlider alloc] initWithFrame:CGRectMake(174,12,240,23)];
-        theSlider.maximumValue=10000;
-        theSlider.minimumValue=0;
-        theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
-        [cell addSubview:theSlider];
-        UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(174, 12, 160, cell.contentView.bounds.size.height - 10)];
-        cell.accessoryView = text;
+        NSArray * subviews = cell.subviews;
+        UISlider* theSlider = nil;
+        for(id sv in subviews){
+            if([sv isKindOfClass:[UISlider class]]){
+                theSlider = sv;
+                break;
+            }                
+        }
         
-        [theSlider addTarget:self action:@selector(reactorPowerSliderValueChange:) forControlEvents:UIControlEventValueChanged];
+        if(!theSlider){
+            
+            theSlider =  [[UISlider alloc] initWithFrame:CGRectMake(174,12,240,23)];
+            theSlider.maximumValue=10000;
+            theSlider.minimumValue=0;
+            theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
+            [cell addSubview:theSlider];
+            
+            UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(174, 12, 120, cell.contentView.bounds.size.height - 10)];
+            cell.accessoryView = text;
+            
+            [theSlider addTarget:self action:@selector(reactorPowerSliderValueChange:) forControlEvents:UIControlEventValueChanged];
+        }
+
     } else if([cell.textLabel.text isEqualToString:@"Mode"] ||
                [cell.textLabel.text isEqualToString:@"RCS"] ||
               [cell.textLabel.text isEqualToString:@"RCS T avg"]){
-        UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(174, 12, 160, cell.contentView.bounds.size.height - 10)];
-        [cell addSubview:textField];
-        cell.accessoryView = textField;
+        NSArray * subviews = cell.subviews;
+        UITextField * textField = nil;
+        for(id sv in subviews){
+            if([sv isKindOfClass:[UITextField class]]){
+                textField = sv;
+                break;
+            }
+        }
+        if(!textField){
+            textField = [[UITextField alloc] initWithFrame:CGRectMake(174, 12, 160, cell.contentView.bounds.size.height - 10)];
+            [cell addSubview:textField];
+            cell.accessoryView = textField;
+        }
     }
 }
 
