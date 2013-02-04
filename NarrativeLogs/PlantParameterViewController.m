@@ -184,6 +184,29 @@
             [cell addSubview:textField];
             cell.accessoryView = textField;
         }
+    }else if([cell.textLabel.text isEqualToString:@"<Parameter X>"]){
+        NSArray * subviews = cell.subviews;
+        UISlider* theSlider = nil;
+        for(id sv in subviews){
+            if([sv isKindOfClass:[UISlider class]]){
+                theSlider = sv;
+                break;
+            }
+        }
+        
+        if(!theSlider){
+            
+            theSlider =  [[UISlider alloc] initWithFrame:CGRectMake(174,12,240,23)];
+            theSlider.maximumValue=100;
+            theSlider.minimumValue=0;
+            theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
+            [cell addSubview:theSlider];
+            
+            UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(174, 12, 120, cell.contentView.bounds.size.height - 10)];
+            cell.accessoryView = text;
+            
+            [theSlider addTarget:self action:@selector(parameterXSliderValueChange:) forControlEvents:UIControlEventValueChanged];
+        }
     }
 }
 
@@ -193,6 +216,14 @@
     UITableViewCell * cell = (UITableViewCell*)[slider superview];
     UILabel *label = (UILabel*)cell.accessoryView;
     label.text = [NSString stringWithFormat:@"%d", (int)round(slider.value)];
+}
+
+- (void) parameterXSliderValueChange: (id)sender
+{
+    UISlider * slider = (UISlider*)sender;
+    UITableViewCell * cell = (UITableViewCell*)[slider superview];
+    UILabel *label = (UILabel*)cell.accessoryView;
+    label.text = [NSString stringWithFormat:@"%d%%", (int)round(slider.value)];
 }
 
 @end
