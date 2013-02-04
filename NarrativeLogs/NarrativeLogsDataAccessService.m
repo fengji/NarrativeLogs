@@ -148,6 +148,32 @@
     return equipArray;
 }
 
++ (NSDictionary*) plantParameters
+{
+    NSArray * labelArray1 = [NSArray arrayWithObjects:@"Mode", nil];
+    NSArray * labelArray2 = [NSArray arrayWithObjects:@"Reactor Power", nil];
+    NSArray * labelArray3 = [NSArray arrayWithObjects:@"MWe", @"MWt", nil];
+    NSArray * labelArray4 = [NSArray arrayWithObjects:@"Bank D Rod Height", nil];
+    NSArray * labelArray5 = [NSArray arrayWithObjects:@"Baron Concentration", nil];
+    NSArray * labelArray6 = [NSArray arrayWithObjects:@"RCS T avg", @"RCS", nil];
+    NSArray * labelArray7 = [NSArray arrayWithObjects:@"<Parameter X>", nil];
+    
+    NSArray * valueArray1 = [NSArray arrayWithObjects:@"", nil];
+    NSArray * valueArray2 = [NSArray arrayWithObjects:@"", nil];
+    NSArray * valueArray3 = [NSArray arrayWithObjects:@"",@"", nil];
+    NSArray * valueArray4 = [NSArray arrayWithObjects:@"", nil];
+    NSArray * valueArray5 = [NSArray arrayWithObjects:@"", nil];
+    NSArray * valueArray6 = [NSArray arrayWithObjects:@"", @"", nil];
+    NSArray * valueArray7 = [NSArray arrayWithObjects:@"", nil];
+    
+    NSArray* label = [NSArray arrayWithObjects:labelArray1, labelArray2, labelArray3, labelArray4, labelArray5, labelArray6, labelArray7,nil];
+    NSArray* detailValue = [NSArray arrayWithObjects:valueArray1, valueArray2, valueArray3, valueArray4, valueArray5, valueArray6, valueArray7, nil];
+    NSMutableDictionary *detail = [[NSMutableDictionary alloc]init];
+    [detail setObject:label forKey:@"label"];
+    [detail setObject:detailValue forKey:@"value"];
+    return detail;
+}
+
 + (NSArray*) photos:(id)entryId
 {
     NSArray * photos = nil;

@@ -673,10 +673,10 @@
             </objects>
             <point key="canvasLocation" x="2408" y="181"/>
         </scene>
-        <!--Table View Controller - Plant Parameters-->
+        <!--Plant Parameter View Controller - Plant Parameters-->
         <scene sceneID="uza-0T-Mct">
             <objects>
-                <tableViewController id="CLT-WY-dOv" sceneMemberID="viewController">
+                <tableViewController id="CLT-WY-dOv" customClass="PlantParameterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QRc-Fd-68T">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -863,6 +863,9 @@
                 <relationship kind="action" name="emailAction:"/>
                 <relationship kind="action" name="multiAddAction:"/>
             </relationships>
+        </class>
+        <class className="PlantParameterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlantParameterViewController.h"/>
         </class>
         <class className="ShiftLogViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftLogViewController.h"/>

@@ -18,6 +18,7 @@
 + (NSDictionary*) equipmentDetail:(id)equipmentId;
 + (NSDictionary*) addEquipmentDetail;
 + (NSArray*) existingEquipment;
++ (NSDictionary*) plantParameters;
 + (NSArray*) photos:(id)entryId;
 + (NSArray*) thumbnailPhotoImages:(NSArray*)photos;
 + (UIImage*) thumbnailPhotoImage: (NSDictionary *)photo;
