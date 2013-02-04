@@ -142,4 +142,26 @@
      */
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([cell.textLabel.text isEqualToString:@"Reactor Power"]){
+        UISlider* theSlider =  [[UISlider alloc] initWithFrame:CGRectMake(174,12,240,23)];
+        theSlider.maximumValue=10000;
+        theSlider.minimumValue=0;
+        theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
+        [cell addSubview:theSlider];
+        UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(174, 12, 160, cell.contentView.bounds.size.height - 10)];
+        cell.accessoryView = text;
+        
+        [theSlider addTarget:self action:@selector(reactorPowerSliderValueChange:) forControlEvents:UIControlEventValueChanged];
+    }
+}
+
+- (void) reactorPowerSliderValueChange: (id)sender
+{
+    UISlider * slider = (UISlider*)sender;
+    UITableViewCell * cell = (UITableViewCell*)[slider superview];
+    UILabel *label = (UILabel*)cell.accessoryView;
+    label.text = [NSString stringWithFormat:@"%d", (int)round(slider.value)];
+}
+
 @end
