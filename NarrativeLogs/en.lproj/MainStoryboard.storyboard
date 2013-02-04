@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="PXa-1n-16M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="PXa-1n-16M">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Narrative Logs View Controller - Logs-->
@@ -152,6 +152,9 @@
                     </navigationItem>
                     <connections>
                         <segue destination="9y7-xQ-uti" kind="push" identifier="LogEntriesView" id="Ifx-ki-9YR"/>
+                        <segue destination="CLT-WY-dOv" kind="push" identifier="PlantParamView" id="xFU-CF-1zu"/>
+                        <segue destination="OSk-wV-tUW" kind="push" identifier="ShiftRosterView" id="fcK-7D-w13"/>
+                        <segue destination="ZAK-SU-6oo" kind="push" identifier="UploadView" id="KVI-qZ-9iH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="enY-8D-hzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -668,7 +671,101 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRZ-mV-3Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2352" y="829"/>
+            <point key="canvasLocation" x="2408" y="181"/>
+        </scene>
+        <!--Table View Controller - Plant Parameters-->
+        <scene sceneID="uza-0T-Mct">
+            <objects>
+                <tableViewController id="CLT-WY-dOv" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QRc-Fd-68T">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlantParameterCell" textLabel="Uvy-kE-XDy" style="IBUITableViewCellStyleDefault" id="kIH-YQ-w8Q">
+                                <rect key="frame" x="0.0" y="54" width="768" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="45" y="1" width="678" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvy-kE-XDy">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CLT-WY-dOv" id="ATT-CY-1k2"/>
+                            <outlet property="delegate" destination="CLT-WY-dOv" id="asc-2f-16m"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Plant Parameters" id="nmz-I1-HQO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbK-Wc-bJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2533" y="1617"/>
+        </scene>
+        <!--Table View Controller - Shift Roster-->
+        <scene sceneID="gG3-NB-IeR">
+            <objects>
+                <tableViewController id="OSk-wV-tUW" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="78j-vf-xcW">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShiftRosterCell" textLabel="vla-qB-AHu" detailTextLabel="8oX-bS-2TH" style="IBUITableViewCellStyleSubtitle" id="eX4-2y-R3m">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vla-qB-AHu">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oX-bS-2TH">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OSk-wV-tUW" id="1Rl-1B-tdT"/>
+                            <outlet property="delegate" destination="OSk-wV-tUW" id="2ss-gb-SmS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Shift Roster" id="7pe-jo-MRL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2lI-oe-C9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693" y="2923"/>
+        </scene>
+        <!--View Controller - Upload-->
+        <scene sceneID="Xg7-UT-a69">
+            <objects>
+                <viewController id="ZAK-SU-6oo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a9m-cU-s7Q">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Upload" id="KJ0-r8-QkB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nir-Dd-EdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2361" y="4251"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="8So-ZL-sbB">
@@ -703,6 +800,92 @@
             <point key="canvasLocation" x="4403" y="277"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AddEquipmentViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEquipmentViewController.h"/>
+        </class>
+        <class className="CameraRollViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CameraRollViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAllAction:"/>
+                <relationship kind="action" name="addSelectedAction:"/>
+            </relationships>
+        </class>
+        <class className="EquipmentDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentDetailViewController.h"/>
+        </class>
+        <class className="ExistingEquipmentViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExistingEquipmentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="search" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="LogDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backToEntries:"/>
+            </relationships>
+        </class>
+        <class className="LogEntriesTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesTabBarController.h"/>
+        </class>
+        <class className="LogEntriesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEntriesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="search" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="LogEquipmemtViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogEquipmemtViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NarrativeLogsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NarrativeLogsViewController.h"/>
+        </class>
+        <class className="PhotoCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoCell.h"/>
+        </class>
+        <class className="PhotoScrollViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScrollViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="PhotosCollectionViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosCollectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAction:"/>
+                <relationship kind="action" name="deleteAction:"/>
+                <relationship kind="action" name="editPhotos:"/>
+                <relationship kind="action" name="emailAction:"/>
+                <relationship kind="action" name="multiAddAction:"/>
+            </relationships>
+        </class>
+        <class className="ShiftLogViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftLogViewController.h"/>
+        </class>
+        <class className="ShiftsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShiftsViewController.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

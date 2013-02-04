@@ -81,7 +81,15 @@
             break;
         }
     }
-    [shiftViewController performSegueWithIdentifier:@"LogEntriesView" sender:shiftViewController];
+    if([logItem isEqualToString:@"Log Entries"]){
+        [shiftViewController performSegueWithIdentifier:@"LogEntriesView" sender:shiftViewController];
+    } else if([logItem isEqualToString:@"Plant Parameters"]){
+        [shiftViewController performSegueWithIdentifier:@"PlantParamView" sender:shiftViewController];
+    } else if([logItem isEqualToString:@"Shift Roaster"]){
+        [shiftViewController performSegueWithIdentifier:@"ShiftRosterView" sender:shiftViewController];
+    } else if([logItem isEqualToString:@"Upload"]){
+        [shiftViewController performSegueWithIdentifier:@"UploadView" sender:shiftViewController];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
