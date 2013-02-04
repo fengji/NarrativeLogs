@@ -9,7 +9,7 @@
 #import "PlantParameterViewController.h"
 #import "NarrativeLogsDataAccessService.h"
 
-@interface PlantParameterViewController ()
+@interface PlantParameterViewController () 
 
 @end
 
@@ -140,6 +140,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    [self.view endEditing:YES];
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -153,6 +154,12 @@
         cell.accessoryView = text;
         
         [theSlider addTarget:self action:@selector(reactorPowerSliderValueChange:) forControlEvents:UIControlEventValueChanged];
+    } else if([cell.textLabel.text isEqualToString:@"Mode"] ||
+               [cell.textLabel.text isEqualToString:@"RCS"] ||
+              [cell.textLabel.text isEqualToString:@"RCS T avg"]){
+        UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(174, 12, 160, cell.contentView.bounds.size.height - 10)];
+        [cell addSubview:textField];
+        cell.accessoryView = textField;
     }
 }
 
