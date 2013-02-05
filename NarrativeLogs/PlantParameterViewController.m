@@ -10,7 +10,7 @@
 #import "NarrativeLogsDataAccessService.h"
 #import "UISliderWithPopover.h"
 
-@interface PlantParameterViewController () 
+@interface PlantParameterViewController () <UITextFieldDelegate>
 
 @end
 
@@ -164,8 +164,9 @@
             theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
             [cell addSubview:theSlider];
             
-            UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(174, 12, 120, cell.contentView.bounds.size.height - 10)];
+            UITextField * text = [[UITextField alloc] initWithFrame:CGRectMake(174, 12, 120, cell.contentView.bounds.size.height - 10)];
             cell.accessoryView = text;
+            text.delegate = self;
             
             [theSlider addTarget:self action:@selector(reactorPowerSliderValueChange:) forControlEvents:UIControlEventValueChanged];
         }
@@ -205,8 +206,9 @@
             theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
             [cell addSubview:theSlider];
             
-            UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(174, 12, 120, cell.contentView.bounds.size.height - 10)];
+            UITextField * text = [[UITextField alloc] initWithFrame:CGRectMake(174, 12, 120, cell.contentView.bounds.size.height - 10)];
             cell.accessoryView = text;
+            text.delegate = self;
             
             [theSlider addTarget:self action:@selector(parameterXSliderValueChange:) forControlEvents:UIControlEventValueChanged];
         }
@@ -227,6 +229,12 @@
     UITableViewCell * cell = (UITableViewCell*)[slider superview];
     UILabel *label = (UILabel*)cell.accessoryView;
     label.text = [NSString stringWithFormat:@"%d%%", (int)round(slider.value)];
+}
+
+// disable the textfield editing for the accessory view of the slider cell
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return NO;
 }
 
 @end
