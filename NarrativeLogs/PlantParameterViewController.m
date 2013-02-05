@@ -8,6 +8,7 @@
 
 #import "PlantParameterViewController.h"
 #import "NarrativeLogsDataAccessService.h"
+#import "UISliderWithPopover.h"
 
 @interface PlantParameterViewController () 
 
@@ -146,9 +147,9 @@
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if([cell.textLabel.text isEqualToString:@"Reactor Power"]){
         NSArray * subviews = cell.subviews;
-        UISlider* theSlider = nil;
+        UISliderWithPopover* theSlider = nil;
         for(id sv in subviews){
-            if([sv isKindOfClass:[UISlider class]]){
+            if([sv isKindOfClass:[UISliderWithPopover class]]){
                 theSlider = sv;
                 break;
             }                
@@ -156,9 +157,10 @@
         
         if(!theSlider){
             
-            theSlider =  [[UISlider alloc] initWithFrame:CGRectMake(174,12,240,23)];
+            theSlider =  [[UISliderWithPopover alloc] initWithFrame:CGRectMake(174,12,240,23)];
             theSlider.maximumValue=10000;
             theSlider.minimumValue=0;
+            theSlider.unit = @"";
             theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
             [cell addSubview:theSlider];
             
@@ -186,9 +188,9 @@
         }
     }else if([cell.textLabel.text isEqualToString:@"<Parameter X>"]){
         NSArray * subviews = cell.subviews;
-        UISlider* theSlider = nil;
+        UISliderWithPopover* theSlider = nil;
         for(id sv in subviews){
-            if([sv isKindOfClass:[UISlider class]]){
+            if([sv isKindOfClass:[UISliderWithPopover class]]){
                 theSlider = sv;
                 break;
             }
@@ -196,9 +198,10 @@
         
         if(!theSlider){
             
-            theSlider =  [[UISlider alloc] initWithFrame:CGRectMake(174,12,240,23)];
+            theSlider =  [[UISliderWithPopover alloc] initWithFrame:CGRectMake(174,12,240,23)];
             theSlider.maximumValue=100;
             theSlider.minimumValue=0;
+            theSlider.unit = @"%";
             theSlider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
             [cell addSubview:theSlider];
             

@@ -37,6 +37,8 @@
 		C0D999B216A9036D002E3008 /* EquipmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D999B116A9036D002E3008 /* EquipmentDetailViewController.m */; };
 		C0D999B516A9038D002E3008 /* AddEquipmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D999B416A9038D002E3008 /* AddEquipmentViewController.m */; };
 		C0DBE11616C034D70032450E /* PlantParameterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DBE11516C034D70032450E /* PlantParameterViewController.m */; };
+		C0DBE11916C076A50032450E /* UISliderWithPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DBE11816C076A50032450E /* UISliderWithPopover.m */; };
+		C0DBE11C16C077F40032450E /* SliderPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DBE11B16C077F40032450E /* SliderPopupView.m */; };
 		C0DF742B16A7274200120400 /* PhotosCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */; };
 		C0DF743916A7A2AE00120400 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF743816A7A2AE00120400 /* FlickrFetcher.m */; };
 		C0DF744616A877F300120400 /* PhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DF744516A877F200120400 /* PhotoScrollViewController.m */; };
@@ -110,6 +112,10 @@
 		C0D999B416A9038D002E3008 /* AddEquipmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEquipmentViewController.m; sourceTree = "<group>"; };
 		C0DBE11416C034D70032450E /* PlantParameterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlantParameterViewController.h; sourceTree = "<group>"; };
 		C0DBE11516C034D70032450E /* PlantParameterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlantParameterViewController.m; sourceTree = "<group>"; };
+		C0DBE11716C076A50032450E /* UISliderWithPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISliderWithPopover.h; sourceTree = "<group>"; };
+		C0DBE11816C076A50032450E /* UISliderWithPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISliderWithPopover.m; sourceTree = "<group>"; };
+		C0DBE11A16C077F30032450E /* SliderPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderPopupView.h; sourceTree = "<group>"; };
+		C0DBE11B16C077F40032450E /* SliderPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderPopupView.m; sourceTree = "<group>"; };
 		C0DF742916A7274200120400 /* PhotosCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCollectionViewController.h; sourceTree = "<group>"; };
 		C0DF742A16A7274200120400 /* PhotosCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCollectionViewController.m; sourceTree = "<group>"; };
 		C0DF743816A7A2AE00120400 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
@@ -203,6 +209,10 @@
 			children = (
 				C0DBE11416C034D70032450E /* PlantParameterViewController.h */,
 				C0DBE11516C034D70032450E /* PlantParameterViewController.m */,
+				C0DBE11716C076A50032450E /* UISliderWithPopover.h */,
+				C0DBE11A16C077F30032450E /* SliderPopupView.h */,
+				C0DBE11B16C077F40032450E /* SliderPopupView.m */,
+				C0DBE11816C076A50032450E /* UISliderWithPopover.m */,
 				C0B6500416B728C2003281D3 /* ExistingEquipmentViewController.h */,
 				C0B6500516B728C2003281D3 /* ExistingEquipmentViewController.m */,
 				C0E06A1B16A9BD760032D6D1 /* PhotoCell.h */,
@@ -420,6 +430,8 @@
 				C0B64FEC16B6DA60003281D3 /* CameraRollViewController.m in Sources */,
 				C0B6500616B728C2003281D3 /* ExistingEquipmentViewController.m in Sources */,
 				C0DBE11616C034D70032450E /* PlantParameterViewController.m in Sources */,
+				C0DBE11916C076A50032450E /* UISliderWithPopover.m in Sources */,
+				C0DBE11C16C077F40032450E /* SliderPopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
