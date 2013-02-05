@@ -9,13 +9,16 @@
 #import "PlantParameterViewController.h"
 #import "NarrativeLogsDataAccessService.h"
 #import "UISliderWithPopover.h"
+#import "RangePickerViewController.h"
 
-@interface PlantParameterViewController () <UITextFieldDelegate>
-
+@interface PlantParameterViewController () <UITextFieldDelegate, UIPopoverControllerDelegate>
+@property (nonatomic, strong) UIPopoverController *poController;
 @end
 
 @implementation PlantParameterViewController
 @synthesize plantParameters = _plantParameters;
+@synthesize poController = _poController;
+
 
 - (void)awakeFromNib
 {
@@ -212,6 +215,24 @@
             
             [theSlider addTarget:self action:@selector(parameterXSliderValueChange:) forControlEvents:UIControlEventValueChanged];
         }
+    }else if([cell.textLabel.text isEqualToString:@"Baron Concentration"]){
+        NSArray * subviews = cell.subviews;
+        UIButton* button = nil;
+        for(id sv in subviews){
+            if([sv isKindOfClass:[UIButton class]]){
+                button = sv;
+                break;
+            }
+        }
+        if(!button){
+            button = [[UIButton alloc] initWithFrame:CGRectMake(174, 12, 160, cell.contentView.bounds.size.height - 10)];
+            [button setTitle:@"Select Range" forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [cell addSubview:button];
+            cell.accessoryView = button;
+            [button addTarget:self action:@selector(popupRangePicker:) forControlEvents:UIControlEventTouchDown];
+        }
+        
     }
 }
 
@@ -235,6 +256,30 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     return NO;
+}
+
+- (void) popupRangePicker: (id)sender
+{
+    NSLog(@"Should launch popup range picker");
+    RangePickerViewController * rangePicker = [[RangePickerViewController alloc] init];
+    rangePicker.contentSizeForViewInPopover = CGSizeMake(200, 200);
+    
+    UIButton *button = nil;
+    if([sender isKindOfClass:[UIButton class]]){
+        button = (UIButton*)sender;
+    }
+    
+    [self dismissPopover];
+    
+    self.poController = [[UIPopoverController alloc] initWithContentViewController:rangePicker];
+    self.poController.delegate=self;
+    [self.poController presentPopoverFromRect:button.frame inView:[button superview] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (void) dismissPopover{
+    if(self.poController){
+        [self.poController dismissPopoverAnimated:YES];
+    }
 }
 
 @end

@@ -47,6 +47,7 @@
 		C0E06A3616A9FF210032D6D1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A3516A9FF210032D6D1 /* MessageUI.framework */; };
 		C0E06A5016ADCC360032D6D1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A4F16ADCC360032D6D1 /* MobileCoreServices.framework */; };
 		C0E06A5216ADFBEB0032D6D1 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E06A5116ADFBEB0032D6D1 /* AssetsLibrary.framework */; };
+		C0E4485216C1AC6D0007EB9D /* RangePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0E4485116C1AC6D0007EB9D /* RangePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,8 @@
 		C0E06A3516A9FF210032D6D1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C0E06A4F16ADCC360032D6D1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C0E06A5116ADFBEB0032D6D1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C0E4485016C1AC6D0007EB9D /* RangePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangePickerViewController.h; sourceTree = "<group>"; };
+		C0E4485116C1AC6D0007EB9D /* RangePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 			children = (
 				C0DBE11416C034D70032450E /* PlantParameterViewController.h */,
 				C0DBE11516C034D70032450E /* PlantParameterViewController.m */,
+				C0E4485016C1AC6D0007EB9D /* RangePickerViewController.h */,
+				C0E4485116C1AC6D0007EB9D /* RangePickerViewController.m */,
 				C0DBE11716C076A50032450E /* UISliderWithPopover.h */,
 				C0DBE11A16C077F30032450E /* SliderPopupView.h */,
 				C0DBE11B16C077F40032450E /* SliderPopupView.m */,
@@ -432,6 +437,7 @@
 				C0DBE11616C034D70032450E /* PlantParameterViewController.m in Sources */,
 				C0DBE11916C076A50032450E /* UISliderWithPopover.m in Sources */,
 				C0DBE11C16C077F40032450E /* SliderPopupView.m in Sources */,
+				C0E4485216C1AC6D0007EB9D /* RangePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
