@@ -262,7 +262,7 @@
 {
     NSLog(@"Should launch popup range picker");
     RangePickerViewController * rangePicker = [[RangePickerViewController alloc] init];
-    rangePicker.contentSizeForViewInPopover = CGSizeMake(200, 200);
+    rangePicker.contentSizeForViewInPopover = CGSizeMake(200, 220);
     
     UIButton *button = nil;
     if([sender isKindOfClass:[UIButton class]]){

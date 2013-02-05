@@ -7,12 +7,16 @@
 //
 
 #import "RangePickerViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RangePickerViewController ()
 
 @property (nonatomic) IBOutlet UIPickerView *picker1;
 @property (nonatomic) IBOutlet UIPickerView *picker2;
 @property (nonatomic) IBOutlet UILabel * toLabel;
+@property (nonatomic)  UIButton * cancelButton;
+@property (nonatomic)  UIButton* okButton;
+
 @end
 
 @implementation RangePickerViewController
@@ -22,6 +26,8 @@
 @synthesize  picker1 = _picker1;
 @synthesize picker2 = _picker2;
 @synthesize toLabel = _toLabel;
+@synthesize cancelButton = _cancelButton;
+@synthesize okButton = _okButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +50,6 @@
         self.picker1.delegate = self;
         self.picker1.dataSource = self;
         self.picker1.showsSelectionIndicator = YES;
-        [self.picker1 setNeedsLayout];
     }
     if(!_picker2){
         _picker2 = [[UIPickerView alloc]initWithFrame:CGRectMake(120, 12, 72, 100)];
@@ -52,17 +57,39 @@
         self.picker2.delegate = self;
         self.picker2.dataSource = self;
         self.picker2.showsSelectionIndicator = YES;
-        [self.picker2 setNeedsLayout];
     }
     if(!_toLabel){
         _toLabel = [[UILabel alloc]initWithFrame: CGRectMake(92, 100, 20, 15)];
         [self.toLabel setText:@"to"];
-        [self.toLabel setNeedsLayout];
     }
-    self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
+    
+    if(!_cancelButton){
+        _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(22, 180, 70, 30)];
+        [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [_cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [[_cancelButton layer] setCornerRadius:4.5f];
+        [[_cancelButton layer] setBorderWidth:1.0f];
+        [[_cancelButton layer] setBorderColor:[UIColor blackColor].CGColor];
+        [_cancelButton setBackgroundColor:[UIColor grayColor]];
+    }
+
+    if(!_okButton){
+        _okButton = [[UIButton alloc] initWithFrame:CGRectMake(112, 180, 70, 30)];
+        [_okButton setTitle:@"OK" forState:UIControlStateNormal];
+        [_okButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [[_okButton layer] setBorderWidth:1.0f];
+        [[_okButton layer] setCornerRadius:4.5f];
+        [[_okButton layer] setBorderColor:[UIColor blackColor].CGColor];
+        [_okButton setBackgroundColor:[UIColor grayColor]];
+
+    }
+    
+    self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 220)];
     [self.view addSubview:self.picker1];
     [self.view addSubview:self.picker2];
     [self.view addSubview:self.toLabel];
+    [self.view addSubview:self.cancelButton];
+    [self.view addSubview:self.okButton];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view setNeedsLayout];
 }
