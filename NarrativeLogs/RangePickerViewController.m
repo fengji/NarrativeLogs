@@ -28,6 +28,7 @@
 @synthesize toLabel = _toLabel;
 @synthesize cancelButton = _cancelButton;
 @synthesize okButton = _okButton;
+@synthesize rangePickerPopoverDelegate = _rangePickerPopoverDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -71,6 +72,7 @@
         [[_cancelButton layer] setBorderWidth:1.0f];
         [[_cancelButton layer] setBorderColor:[UIColor blackColor].CGColor];
         [_cancelButton setBackgroundColor:[UIColor grayColor]];
+        [_cancelButton addTarget:self action:@selector(cancelButtonClicked:) forControlEvents:UIControlEventTouchDown];
     }
 
     if(!_okButton){
@@ -81,6 +83,7 @@
         [[_okButton layer] setCornerRadius:4.5f];
         [[_okButton layer] setBorderColor:[UIColor blackColor].CGColor];
         [_okButton setBackgroundColor:[UIColor grayColor]];
+        [_okButton addTarget:self action:@selector(okButtonClicked:) forControlEvents:UIControlEventTouchDown];
 
     }
     
@@ -92,6 +95,23 @@
     [self.view addSubview:self.okButton];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view setNeedsLayout];
+}
+
+- (void) okButtonClicked: (id)sender
+{
+    // find value in the pickers
+    NSInteger row1 = [self.picker1 selectedRowInComponent:0];
+    NSInteger row2 = [self.picker2 selectedRowInComponent:0];
+    NSString * start = [self.data1 objectAtIndex:row1];
+    NSString * end = [self.data2 objectAtIndex:row2];
+    // call delegate to update and dismiss popover
+    [self.rangePickerPopoverDelegate updateRangeWithStart:start End:end];
+}
+
+- (void) cancelButtonClicked: (id) sender
+{
+    // call delegate to dismiss popover
+    [self.rangePickerPopoverDelegate dismissPopover];
 }
 
 - (void)didReceiveMemoryWarning

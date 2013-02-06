@@ -13,11 +13,13 @@
 
 @interface PlantParameterViewController () <UITextFieldDelegate, UIPopoverControllerDelegate>
 @property (nonatomic, strong) UIPopoverController *poController;
+@property (nonatomic, strong) UIButton * rangeButton;
 @end
 
 @implementation PlantParameterViewController
 @synthesize plantParameters = _plantParameters;
 @synthesize poController = _poController;
+@synthesize rangeButton = _rangeButton;
 
 
 - (void)awakeFromNib
@@ -262,11 +264,13 @@
 {
     NSLog(@"Should launch popup range picker");
     RangePickerViewController * rangePicker = [[RangePickerViewController alloc] init];
+    rangePicker.rangePickerPopoverDelegate = self;
     rangePicker.contentSizeForViewInPopover = CGSizeMake(200, 220);
     
     UIButton *button = nil;
     if([sender isKindOfClass:[UIButton class]]){
         button = (UIButton*)sender;
+        self.rangeButton = button;
     }
     
     [self dismissPopover];
@@ -280,6 +284,15 @@
     if(self.poController){
         [self.poController dismissPopoverAnimated:YES];
     }
+}
+
+- (void) updateRangeWithStart:(NSString *)start End:(NSString *)end
+{
+    NSLog(@"Update text for the range selected with start %@ and end %@", start, end);
+    // find the button to update the text
+    NSString * text = [NSString stringWithFormat:@"%@%@%@", start, @"-", end];
+    [self.rangeButton setTitle:text forState:UIControlStateNormal];
+    [self dismissPopover];
 }
 
 @end

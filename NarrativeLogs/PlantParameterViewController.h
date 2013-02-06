@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RangePickerPopoverDelegate.h"
 
-@interface PlantParameterViewController : UITableViewController
+@interface PlantParameterViewController : UITableViewController <RangePickerPopoverDelegate>
 @property (nonatomic, strong) NSMutableDictionary* plantParameters;
 @end

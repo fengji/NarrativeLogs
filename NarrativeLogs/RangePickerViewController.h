@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RangePickerPopoverDelegate.h"
 @interface RangePickerViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (nonatomic, strong) NSArray * data1;
 @property (nonatomic, strong) NSArray * data2;
+@property (nonatomic, strong) id<RangePickerPopoverDelegate> rangePickerPopoverDelegate;
 @end
