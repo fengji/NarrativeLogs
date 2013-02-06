@@ -20,13 +20,36 @@
 @synthesize plantParameters = _plantParameters;
 @synthesize poController = _poController;
 @synthesize rangeButton = _rangeButton;
-
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     self.navigationItem.hidesBackButton = YES;
 }
+
+- (void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
+}
+
+- (void)handleSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    NSMutableArray *navItems = [[self.navigationItem leftBarButtonItems] mutableCopy];
+    if(!navItems){
+        navItems = [@[] mutableCopy];
+    }
+    if (_splitViewBarButtonItem){
+        [navItems removeObject:_splitViewBarButtonItem];
+    }
+    if (splitViewBarButtonItem){
+        [navItems insertObject:splitViewBarButtonItem atIndex:0];
+    }
+    [self.navigationItem setLeftBarButtonItems:navItems animated:YES];
+    _splitViewBarButtonItem = splitViewBarButtonItem;
+}
+
+
 
 - (void) setPlantParameters:(NSMutableDictionary *)plantParameters{
     if(_plantParameters != plantParameters){
@@ -54,6 +77,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.plantParameters = [[NarrativeLogsDataAccessService plantParameters] mutableCopy];
+    // Do any additional setup after loading the view.
+    [self handleSplitViewBarButtonItem:self.splitViewBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

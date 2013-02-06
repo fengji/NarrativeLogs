@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RangePickerPopoverDelegate.h"
+#import "SplitViewBarButtonItemPresenter.h"
 
-@interface PlantParameterViewController : UITableViewController <RangePickerPopoverDelegate>
+@interface PlantParameterViewController : UITableViewController <RangePickerPopoverDelegate, SplitViewBarButtonItemPresenter>
 @property (nonatomic, strong) NSMutableDictionary* plantParameters;
 @end

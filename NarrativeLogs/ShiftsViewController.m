@@ -82,10 +82,8 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"LogEntriesView"]) {
-        id destinationViewController = segue.destinationViewController;
-        [self transferSplitViewBarButtonItemToViewController: destinationViewController];
-    }
+    id destinationViewController = segue.destinationViewController;
+    [self transferSplitViewBarButtonItemToViewController: destinationViewController];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
